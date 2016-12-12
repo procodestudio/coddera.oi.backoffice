@@ -1,0 +1,21 @@
+{
+  "name": "coddera.oi.backoffice",
+  "version": "1.0.0",
+  "description": "OI Backoffice",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd view && gulp serve",
+    "install": "cd view && npm install"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/procodestudio/coddera.oi.backoffice.git"
+  },
+  "author": "Procode.studio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/procodestudio/coddera.oi.backoffice/issues"
+  },
+  "homepage": "https://github.com/procodestudio/coddera.oi.backoffice#readme"
+}
