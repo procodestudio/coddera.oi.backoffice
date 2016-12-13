@@ -15,7 +15,7 @@ const constants = {
   },
 
   server: {
-    port: 6000
+    port: 4500
   }
 
 };
