@@ -1,0 +1,36 @@
+{
+  "name": "Offer",
+  "columns": {
+    "id": {
+      "primary": true,
+      "type": "int",
+      "generated": true
+    },
+    "nome": {
+      "type": "string",
+      "length": 20
+    },
+    "descricao": {
+      "type": "string",
+      "length": 300
+    },
+    "script": {
+      "type": "string",
+      "length": 200
+    },
+    "preco": {
+      "type": "double"
+    },
+    "exibir": {
+      "type": "double"
+    },
+    "idPrograma": {
+      "type": "string",
+      "length": 2
+    },
+    "idBeneficio": {
+      "type": "string",
+      "length": 2
+    }
+  }
+}

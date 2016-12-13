@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const constants = require(path.resolve('src/util/constants'));
-
+const offerRoutes = require(path.resolve('src/routes/offer'));
 
 /* App Configuration */
 const app = express();
@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(helmet());
 
+
+offerRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log(app.get('title') + ' listening on port ' + app.get('port'));
