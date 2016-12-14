@@ -14,14 +14,10 @@ let connection = typeORM.createConnection({
     sid: constants.db.sid
   },
   entitySchemas: [
-    path.resolve('src/entity/*.json')
+    require(path.resolve('src/entity/offer.js'))
   ],
   autoSchemaSync: true
 
-}).then(function(conn) {
-  connection = conn;
-}).catch(function(error) {
-  console.log("Error: ", error);
 });
 
 module.exports = connection;

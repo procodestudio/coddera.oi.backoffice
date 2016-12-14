@@ -7,7 +7,9 @@ const connection  = require(path.resolve('src/util/connection'));
 let dao = {
 
   getAll: function() {
-      return connection.getRepository('Offer').find();
+      connection.then(function(conn) {
+        return conn.getRepository('OFERTA').find();
+      });
       //return offerRepository.find();
 
   }
