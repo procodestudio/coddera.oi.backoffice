@@ -16,6 +16,12 @@ const constants = {
 
   server: {
     port: 4500
+  },
+
+  query: {
+    offer: {
+      getAll: 'SELECT * FROM "PROCODE_S2S"."OFERTA"'
+    }
   }
 
 };

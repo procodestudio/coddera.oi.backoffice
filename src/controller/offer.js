@@ -5,10 +5,14 @@ const offerController = {
 
   getAll: function(req, res) {
 
-    offerDao.getAll().then(function(offers) {
-      res.status(200).json(offers);
-    }).catch(function(error) {
-      res.status(500).json(error);
+    offerDao.getAll(function(err, offers) {
+
+      if(err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(offers.rows || [] );
+      }
+
     });
   }
 
