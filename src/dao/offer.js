@@ -14,6 +14,24 @@ let dao = {
           cb);
       });
 
+  },
+
+  save: function(obj, cb) {
+    connection.getConnection(function(err, conn) {
+
+      console.log(JSON.stringify(err));
+
+      if(err) {
+        cb(err);
+      } else {
+        conn.execute(constants.query.offer.save,
+          [obj.ID, obj.NOME, obj.DESCRICAO, obj.SCRIPT, obj.PRECO, obj.EXIBIR, obj.ID_PROGRAMA, obj.ID_BENEFICIO],
+          { autoCommit: true},
+          cb);
+      }
+
+    });
+
   }
 
 };

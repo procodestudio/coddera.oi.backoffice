@@ -14,6 +14,23 @@ const offerController = {
       }
 
     });
+  },
+
+  save: function(req, res) {
+
+    let offer = req.body;
+
+    offerDao.save(offer, function(err, result) {
+
+      if(err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+
+    });
+
+
   }
 
 };

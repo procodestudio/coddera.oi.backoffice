@@ -20,7 +20,9 @@ const constants = {
 
   query: {
     offer: {
-      getAll: 'SELECT * FROM "PROCODE_S2S"."OFERTA"'
+      getAll: 'SELECT * FROM "PROCODE_S2S"."OFERTA"',
+      save: 'INSERT INTO "PROCODE_S2S"."OFERTA"(ID, NOME, DESCRICAO, SCRIPT, PRECO, EXIBIR, ID_PROGRAMA, ID_BENEFICIO) ' +
+      'VALUES (:ID, :NOME, :DESCRICAO, :SCRIPT, :PRECO, :EXIBIR, :ID_PROGRAMA, :ID_BENEFICIO)'
     }
   }
 

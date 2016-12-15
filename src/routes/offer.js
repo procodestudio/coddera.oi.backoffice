@@ -6,6 +6,7 @@ module.exports = function(app) {
   const router = require('express').Router();
 
   router.get('/api/offer', offerController.getAll);
+  router.post('/api/offer', offerController.save);
 
   app.use(router);
 
