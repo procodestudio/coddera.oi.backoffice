@@ -30,6 +30,22 @@ const offerController = {
 
     });
 
+  },
+
+  remove: function(req, res) {
+
+    let offerId = req.params.offerId;
+
+    offerDao.remove(offerId, function(err, result) {
+
+      if(err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+
+    });
+
 
   }
 
