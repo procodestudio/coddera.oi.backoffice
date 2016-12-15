@@ -5,6 +5,7 @@ module.exports = function(app) {
   const offerController = require(path.resolve('src/controller/offer'));
   const router = require('express').Router();
 
+  router.get('/api/offer/:offerId', offerController.get);
   router.get('/api/offer', offerController.getAll);
   router.post('/api/offer', offerController.save);
   router.delete('/api/offer/:offerId', offerController.remove);

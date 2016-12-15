@@ -3,6 +3,29 @@ const path = require('path');
 const offerDao = require(path.resolve('src/dao/offer'));
 const offerController = {
 
+
+  get: function(req, res) {
+
+    let offerId = req.params.offerId;
+
+    offerDao.get(offerId, function(err, offers) {
+
+      let result = {};
+
+      if(err) {
+        res.status(500).json(err);
+      } else {
+
+        if(offers.rows && offers.rows.length > 0) {
+          result = offers.rows[0];
+        }
+
+        res.status(200).json(result);
+      }
+
+    });
+  },
+
   getAll: function(req, res) {
 
     offerDao.getAll(function(err, offers) {

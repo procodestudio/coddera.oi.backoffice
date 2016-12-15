@@ -6,6 +6,22 @@ const constants = require(path.resolve('src/util/constants'));
 
 let dao = {
 
+  get: function(offerId, cb) {
+
+    connection.getConnection(function(err, conn) {
+
+      if(err) {
+        cb(err);
+      } else {
+        conn.execute(constants.query.offer.get,
+          [offerId],
+          {outFormat: oracledb.OBJECT},
+          cb);
+      }
+    });
+
+  },
+
   getAll: function(cb) {
       connection.getConnection(function(err, conn) {
         conn.execute(constants.query.offer.getAll,
