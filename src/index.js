@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const constants = require(path.resolve('src/util/constants'));
 const offerRoutes = require(path.resolve('src/routes/offer'));
 const checkpointRoutes = require(path.resolve('src/routes/checkpoint'));
+const userRoutes = require(path.resolve('src/routes/user'));
 
 /* App Configuration */
 const app = express();
@@ -19,6 +20,7 @@ app.use(helmet());
 
 offerRoutes(app);
 checkpointRoutes(app);
+userRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log(app.get('title') + ' listening on port ' + app.get('port'));
