@@ -1,0 +1,26 @@
+[
+  {
+    "ID": 1,
+    "NOME": "Solicitando",
+    "STATUS": "Aguardando confirmação do cliente",
+    "TIME_OUT": 20
+  },
+  {
+    "ID": 2,
+    "NOME": "Confirmação",
+    "STATUS": "Efetuando transação no sistema",
+    "TIME_OUT": 20
+  },
+  {
+    "ID": 3,
+    "NOME": "Transação",
+    "STATUS": "Transação efetuada com sucesso",
+    "TIME_OUT": 20
+  },
+  {
+    "ID": 4,
+    "NOME": "Encerrando",
+    "STATUS": "Atendimento efetuado com sucesso",
+    "TIME_OUT": 20
+  }
+]
