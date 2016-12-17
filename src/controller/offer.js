@@ -55,6 +55,25 @@ const offerController = {
 
   },
 
+  update: function(req, res) {
+
+    let offer = req.body;
+    let offerId = req.params.id;
+
+    offer.ID = offerId;
+
+    offerDao.update(offer, function(err, result) {
+
+      if(err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json(result);
+      }
+
+    });
+
+  },
+
   remove: function(req, res) {
 
     let offerId = req.params.offerId;

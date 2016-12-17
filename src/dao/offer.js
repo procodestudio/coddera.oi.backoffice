@@ -48,6 +48,22 @@ let dao = {
 
   },
 
+  update: function(obj, cb) {
+    connection.getConnection(function(err, conn) {
+
+      if(err) {
+        cb(err);
+      } else {
+        conn.execute(constants.query.offer.update,
+          [obj.NOME, obj.DESCRICAO, obj.SCRIPT, obj.PRECO, obj.EXIBIR, obj.ID_PROGRAMA, obj.ID_BENEFICIO, obj.ID],
+          { autoCommit: true },
+          cb);
+      }
+
+    });
+
+  },
+
   remove: function(offerId, cb) {
     connection.getConnection(function(err, conn) {
 

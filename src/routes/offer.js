@@ -9,6 +9,7 @@ module.exports = function(app) {
   router.get('/api/offer', offerController.getAll);
   router.post('/api/offer', offerController.save);
   router.delete('/api/offer/:offerId', offerController.remove);
+  router.put('/api/offer/:id', offerController.update);
 
   app.use(router);
 
