@@ -4,7 +4,7 @@ import 'zone.js/dist/zone';
 import '@angular/common';
 import 'rxjs';
 
-import './index.scss';
+import './assets/styl/index.styl';
 
 import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';

@@ -7,6 +7,10 @@ const FailPlugin = require('webpack-fail-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
+const jeet = require('jeet');
+const axis = require('axis');
+const rupture = require('rupture');
+
 module.exports = {
   module: {
     loaders: [
@@ -23,10 +27,10 @@ module.exports = {
         enforce: 'pre'
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.(css|styl)$/,
         loaders: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?minimize!sass-loader!postcss-loader'
+          loader: 'css-loader?minimize!stylus-loader!postcss-loader'
         })
       },
       {
@@ -74,6 +78,14 @@ module.exports = {
           configuration: require('../tslint.json')
         }
       }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      stylus: {
+        default: {
+          use: [jeet(), axis(), rupture()],
+        }
+      },
     })
   ],
   output: {

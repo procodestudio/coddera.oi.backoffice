@@ -6,6 +6,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FailPlugin = require('webpack-fail-plugin');
 const autoprefixer = require('autoprefixer');
 
+const jeet = require('jeet');
+const axis = require('axis');
+const rupture = require('rupture');
+
 module.exports = {
   module: {
     loaders: [
@@ -22,11 +26,11 @@ module.exports = {
         enforce: 'pre'
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.(css|styl)$/,
         loaders: [
           'style-loader',
           'css-loader',
-          'sass-loader',
+          'stylus-loader',
           'postcss-loader'
         ]
       },
@@ -68,6 +72,14 @@ module.exports = {
         }
       },
       debug: true
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      stylus: {
+        default: {
+          use: [jeet(), axis(), rupture()],
+        }
+      },
     })
   ],
   devtool: 'source-map',
