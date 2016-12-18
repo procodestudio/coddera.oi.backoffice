@@ -24,10 +24,16 @@ let dao = {
 
   getAll: function(cb) {
       connection.getConnection(function(err, conn) {
-        conn.execute(constants.query.offer.getAll,
-          {}, //no binds
-          { outFormat: oracledb.OBJECT },
-          cb);
+
+        if(err) {
+          cb(err);
+        } else {
+          conn.execute(constants.query.offer.getAll,
+            {}, //no binds
+            { outFormat: oracledb.OBJECT },
+            cb);
+        }
+
       });
 
   },
