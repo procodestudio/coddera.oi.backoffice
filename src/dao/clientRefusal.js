@@ -6,15 +6,15 @@ const constants = require(path.resolve('src/util/constants'));
 
 let dao = {
 
-  get: function(offerId, cb) {
+  get: function(id, cb) {
 
     connection.getConnection(function(err, conn) {
 
       if(err) {
         cb(err);
       } else {
-        conn.execute(constants.query.offer.get,
-          [offerId],
+        conn.execute(constants.query.clientRefusal.get,
+          [id],
           {outFormat: oracledb.OBJECT},
           cb);
       }
@@ -28,7 +28,7 @@ let dao = {
         if(err) {
           cb(err);
         } else {
-          conn.execute(constants.query.offer.getAll,
+          conn.execute(constants.query.clientRefusal.getAll,
             {}, //no binds
             { outFormat: oracledb.OBJECT },
             cb);
@@ -44,8 +44,8 @@ let dao = {
       if(err) {
         cb(err);
       } else {
-        conn.execute(constants.query.offer.save,
-          [obj.ID, obj.NOME, obj.DESCRICAO, obj.SCRIPT, obj.PRECO, obj.EXIBIR, obj.ID_PROGRAMA, obj.ID_BENEFICIO],
+        conn.execute(constants.query.clientRefusal.save,
+          [obj.ID, obj.UCID, obj.RECUSA],
           { autoCommit: true},
           cb);
       }
@@ -60,8 +60,8 @@ let dao = {
       if(err) {
         cb(err);
       } else {
-        conn.execute(constants.query.offer.update,
-          [obj.NOME, obj.DESCRICAO, obj.SCRIPT, obj.PRECO, obj.EXIBIR, obj.ID_PROGRAMA, obj.ID_BENEFICIO, obj.ID],
+        conn.execute(constants.query.clientRefusal.update,
+          [obj.UCID, obj.RECUSA, obj.ID],
           { autoCommit: true },
           cb);
       }
@@ -70,14 +70,14 @@ let dao = {
 
   },
 
-  remove: function(offerId, cb) {
+  remove: function(id, cb) {
     connection.getConnection(function(err, conn) {
 
       if(err) {
         cb(err);
       } else {
-        conn.execute(constants.query.offer.remove,
-          [offerId],
+        conn.execute(constants.query.clientRefusal.remove,
+          [id],
           { autoCommit: true},
           cb);
       }
@@ -87,6 +87,4 @@ let dao = {
   }
 
 };
-
-
 module.exports = dao;
