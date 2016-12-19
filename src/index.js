@@ -1,5 +1,6 @@
 const path = require('path');
 const http = require('http');
+var cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -17,9 +18,15 @@ app.set('port', constants.server.port);
 app.set('title', constants.app.name);
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(helmet());
 
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  next();
+});
 
 offerRoutes(app);
 checkpointRoutes(app);
