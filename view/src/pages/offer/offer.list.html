@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let offer of offers; let index = index">
+      <td>{{offer.NOME}}</td>
+      <td>{{offer.ID}}</td>
+    </tr>
+  </tbody>
+</table>
