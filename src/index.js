@@ -9,6 +9,7 @@ const checkpointRoutes = require(path.resolve('src/routes/checkpoint'));
 const userRoutes = require(path.resolve('src/routes/user'));
 const permissionRoutes = require(path.resolve('src/routes/permission'));
 const permissionUserRoutes = require(path.resolve('src/routes/permissionUser'));
+const clientRefusalRoutes = require(path.resolve('src/routes/clientRefusal'));
 
 /* App Configuration */
 const app = express();
@@ -25,6 +26,7 @@ checkpointRoutes(app);
 userRoutes(app);
 permissionRoutes(app);
 permissionUserRoutes(app);
+clientRefusalRoutes(app);
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log(app.get('title') + ' listening on port ' + app.get('port'));
