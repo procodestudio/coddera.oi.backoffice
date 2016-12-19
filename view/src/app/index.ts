@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {routing, RootComponent} from './routes';
 
 import {DashboardComponent} from '../pages/dashboard/dashboard';
+import {HeaderComponent} from "../components/header/header";
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import {DashboardComponent} from '../pages/dashboard/dashboard';
   ],
   declarations: [
     RootComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   bootstrap: [RootComponent]
 })

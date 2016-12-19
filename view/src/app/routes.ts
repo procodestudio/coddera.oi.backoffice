@@ -4,7 +4,7 @@ import {DashboardComponent} from '../pages/dashboard/dashboard';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>'
+  template: require('./app.html')
 })
 export class RootComponent {}
 
