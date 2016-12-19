@@ -1,14 +1,28 @@
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>ID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let offer of offers; let index = index">
-      <td>{{offer.NOME}}</td>
-      <td>{{offer.ID}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="offers-list">
+
+  <h1>Contre de ofertas</h1>
+
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Programa</th>
+        <th>Benefício</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let offer of offers; let index = index">
+        <td>{{offer.NOME}}</td>
+        <td>{{(offer.PRECO | currency:'BRL':true:'1.2-2') || 'R$0.00'}}</td>
+        <td>{{offer.ID_PROGRAMA}}</td>
+        <td>{{offer.ID_BENEFICIO}}</td>
+        <td>
+          <button>Editar item</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

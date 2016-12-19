@@ -1,0 +1,50 @@
+.table-container
+	font-family $font
+	background-size 100% .2rem
+	background-repeat no-repeat;
+	background-position 100% 2.8rem;
+	background-image linear-gradient(90deg, #8249fd -34%, #ac31dd 55%, #d827a8 144%)
+
+	table
+		border 0
+		width 100%
+		th
+			height 2.65rem;
+			font-size 12px;
+			letter-spacing -0.01em
+			text-transform uppercase
+			font-weight $bold
+			padding-left 20px
+		td
+			height 3.8em
+			font-weight $thin
+			font-size 23px
+			font-family: $font
+
+		tbody
+			tr
+				transition: all 0.5s ease;
+
+				td
+					padding 20px
+
+				&:hover
+					background-color #8f25e5
+					color #ffffff
+
+					button
+						background-color #F0C000
+						border-color #F0C000
+						color #000000
+
+		button
+			font-weight $light-font
+			text-decoration none
+			background none
+			font-size 16px
+			padding 16px
+			border-radius 3px
+			border 1px solid #8f25e5
+			float right
+
+
