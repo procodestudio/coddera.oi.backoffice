@@ -1,5 +1,5 @@
 <div class="offers-list">
-
+  <span defaultOverlayTarget></span>
   <h1>Controle de ofertas</h1>
 
   <div class="table-container">
@@ -19,6 +19,9 @@
         <td>{{offer.ID_PROGRAMA}}</td>
         <td>{{offer.ID_BENEFICIO}}</td>
         <td>
+          <button (click)="deleteOffer(offer, index)">
+            <i class="fa fa-trash"></i>
+          </button>
           <button>Editar item</button>
         </td>
       </tr>

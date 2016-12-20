@@ -25,7 +25,7 @@ export class OfferService {
   }
 
   delete(offer: IOffer) {
-    let url = `${this.apiUrl}/client/${offer.ID}`;
+    let url = `${this.apiUrl}/offer/${offer.ID}`;
 
     return this.http.delete(url)
       .catch(this.handleError);

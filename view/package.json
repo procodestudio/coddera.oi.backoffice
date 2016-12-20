@@ -7,6 +7,7 @@
     "@angular/platform-browser": "2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
+    "angular2-modal": "^2.0.2",
     "core-js": "2.4.1",
     "font-awesome-stylus": "^4.7.0",
     "rxjs": "5.0.0-beta.12",

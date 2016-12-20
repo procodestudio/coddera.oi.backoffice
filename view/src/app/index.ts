@@ -7,10 +7,12 @@ import {DashboardComponent} from '../pages/dashboard/dashboard';
 import {HeaderComponent} from "../components/header/header";
 import {OfferService} from "../providers/offer.service";
 import {OfferListComponent} from "../pages/offer/offer.list";
+import { ModalModule } from 'angular2-modal';
 
 @NgModule({
   imports: [
     BrowserModule,
+    ModalModule.forRoot(),
     HttpModule,
     routing
   ],
