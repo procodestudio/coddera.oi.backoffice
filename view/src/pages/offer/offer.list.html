@@ -1,6 +1,6 @@
 <div class="main-content-container">
   <span defaultOverlayTarget></span>
-  <h1>Controle de ofertas</h1>
+  <h1 class="main-content-container__title">Controle de ofertas</h1>
 
   <div class="table-container">
 
@@ -23,7 +23,7 @@
           <button (click)="deleteOffer(offer, index)">
             <i class="fa fa-trash"></i>
           </button>
-          <button>Editar item</button>
+          <button (click)="openOffer(offer)">Editar item</button>
         </td>
       </tr>
       </tbody>

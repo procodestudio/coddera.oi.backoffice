@@ -23,10 +23,7 @@ export class OfferEditComponent {
       this.offerId = params['id'];
 
       if(this.offerId){
-        this.offerService.getOffer(this.offerId).subscribe(offer => {
-          this.offer = offer;
-          this.setFormValues(this.offer, this.offerForm);
-        });
+        this.loadOffer();
       }
     });
 
@@ -57,6 +54,13 @@ export class OfferEditComponent {
     });
   }
 
+  loadOffer(){
+    this.offerService.getOffer(this.offerId).subscribe(offer => {
+      this.offer = offer;
+      this.setFormValues(this.offer, this.offerForm);
+    });
+  }
+
   saveOffer(){
     this.offerService.saveOffer(this.offer).subscribe(offer => {
       console.log(offer);
@@ -67,7 +71,7 @@ export class OfferEditComponent {
     formGroup.setValue(offer, { onlySelf: true });
   }
 
-  isNullOrUndefined(value: string){
+  private isNullOrUndefined(value: string){
     return (value != '' && value != undefined);
   }
 

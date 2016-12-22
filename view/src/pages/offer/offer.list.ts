@@ -2,6 +2,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {OfferService} from "../../providers/offer.service";
 import {IOffer} from "../../models/IOffer";
 import { Modal, JSNativeModalModule, providers } from 'angular2-modal/plugins/js-native';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'offer-list',
@@ -12,7 +13,10 @@ import { Modal, JSNativeModalModule, providers } from 'angular2-modal/plugins/js
 export class OfferListComponent {
   offers: IOffer[];
 
-  constructor(private offerService: OfferService, public modal: Modal) {
+  constructor(
+    private router: Router,
+    private offerService: OfferService,
+    public modal: Modal) {
 
     this.offerService.getOffers().subscribe(offers => {
       this.offers = offers;
@@ -32,4 +36,9 @@ export class OfferListComponent {
       }, () => {})
     });
   }
+
+  openOffer(offer: IOffer) {
+    this.router.navigate(['/offer', offer.ID]);
+  }
+
 }
