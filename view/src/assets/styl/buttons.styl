@@ -1,0 +1,56 @@
+.send-button
+	display inline-block
+	position relative
+	border 0
+	float right
+	font-family $font
+	font-size 11px
+	text-transform uppercase
+	text-decoration none
+	letter-spacing 1px
+	background-color $positive
+	color $light
+	padding 15px 30px
+	padding-left 55px
+	border-radius 20px
+	vertical-align middle
+	white-space nowrap
+	width 186px
+	cursor pointer
+	pointer-events all
+	margin 20px 0
+
+	&:disabled
+		pointer-events none
+		opacity .5
+
+	&__wrapper
+		overflow hidden
+		width 100%
+		opacity 1
+
+	&:before
+		icon($icon-checked, 'FontAwesome', 22px)
+		absolute()
+		top 50%
+		left 30px
+		margin-top -13px
+		color $light
+		font-weight 100
+		vertical-align middle
+		opacity 1
+
+	&.collapse
+		width 41px
+		padding 15px 20px
+		pointer-events none
+
+		.send-offer__wrapper
+			width 0
+			opacity 0
+
+		&:before
+			opacity 0
+
+	&.hide
+		opacity 0

@@ -1,0 +1,41 @@
+<div class="main-content-container">
+  <span defaultOverlayTarget></span>
+  <h1 class="main-content-container__title">Edição de oferta</h1>
+
+  <div class="form-container" *ngIf="offer">
+    <form [formGroup]="offerForm" >
+      <div class="form-input">
+        <input type="text" [(ngModel)]="offer.NOME" formControlName="NOME" [ngClass]="{ 'has-value': isNullOrUndefined(offer.NOME) }">
+        <label>Nome</label>
+      </div>
+      <div class="form-input form-input-textarea">
+        <textarea [(ngModel)]="offer.DESCRICAO" formControlName="DESCRICAO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.DESCRICAO) }">
+        </textarea>
+        <label>Descrição</label>
+      </div>
+      <div class="form-input form-input-textarea">
+         <textarea [(ngModel)]="offer.SCRIPT" formControlName="SCRIPT" [ngClass]="{ 'has-value': isNullOrUndefined(offer.SCRIPT) }">
+        </textarea>
+        <label>Script</label>
+      </div>
+      <div class="form-input">
+        <input type="text" [(ngModel)]="offer.PRECO" formControlName="PRECO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.PRECO) }">
+        <label>Preço</label>
+      </div>
+      <div class="form-input">
+        <input type="text" [(ngModel)]="offer.ID_PROGRAMA" formControlName="ID_PROGRAMA" [ngClass]="{ 'has-value': isNullOrUndefined(offer.ID_PROGRAMA) }">
+        <label>Programa</label>
+      </div>
+      <div class="form-input">
+        <input type="text" [(ngModel)]="offer.ID_BENEFICIO" formControlName="ID_BENEFICIO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.ID_BENEFICIO) }">
+        <label>Benefício</label>
+      </div>
+
+      <div>
+        <button class="send-button" type="submit" [disabled]="!offerForm.valid" (click)="saveOffer()">Salvar</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

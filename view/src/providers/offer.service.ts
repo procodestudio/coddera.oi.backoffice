@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Http, RequestOptions, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs';
 import {IOffer} from '../models/IOffer';
@@ -8,6 +8,7 @@ import {IOffer} from '../models/IOffer';
 export class OfferService {
   apiUrl = 'http://localhost:4500/api';
   mappedOffers: IOffer[];
+  mappedOffer: IOffer;
 
   constructor(public http: Http) { }
 
@@ -21,6 +22,27 @@ export class OfferService {
         });
 
         return this.mappedOffers;
+      });
+  }
+
+  getOffer(offerId: string): Observable<IOffer> {
+    return this.http.get(`${this.apiUrl}/offer/${offerId}`)
+      .map(res => {
+        this.mappedOffer = <IOffer>res.json();
+
+        return this.mappedOffer;
+      });
+  }
+
+  saveOffer(offer: IOffer): Observable<IOffer> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(`${this.apiUrl}/offer/${offer.ID}`, JSON.stringify(offer), options)
+      .map(res => {
+        this.mappedOffer = <IOffer>res.json();
+
+        return this.mappedOffer;
       });
   }
 
