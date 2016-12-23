@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {OfferService} from "../../providers/offer.service";
 import {IOffer} from "../../models/IOffer";
 import { Router, ActivatedRoute } from '@angular/router';
+import {ToastsManager} from "ng2-toastr/ng2-toastr";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class OfferEditComponent {
   private paramSubscribe: any;
 
   constructor(
+    public toastr: ToastsManager,
     private offerService: OfferService,
     private router: Router,
     private route: ActivatedRoute,
@@ -37,7 +39,8 @@ export class OfferEditComponent {
       NOME: ['',
         [
           <any>Validators.required,
-          <any>Validators.minLength(5)
+          <any>Validators.minLength(5),
+          <any>Validators.maxLength(20)
         ]
       ],
       DESCRICAO: ['',
@@ -71,11 +74,14 @@ export class OfferEditComponent {
   saveOffer(){
     if(this.offer.ID){
       this.offerService.saveOffer(this.offer).subscribe(offer => {
-        console.log(offer);
+        this.toastr.success('Oferta criada com sucesso!');
+        this.goBackToList();
       });
+
     }else{
       this.offerService.newOffer(this.offer).subscribe(offer => {
-        console.log(offer);
+        this.toastr.success('Oferta salva com sucesso!');
+        this.goBackToList();
       });
     }
 

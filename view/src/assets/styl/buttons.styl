@@ -2,6 +2,7 @@
 	display inline-block
 	position relative
 	border 0
+	margin 0
 	float right
 	font-family $font
 	font-size 11px
@@ -17,12 +18,12 @@
 	width 186px
 	cursor pointer
 	pointer-events all
-	margin 50px 0
 
 	&-cancel
 		background-color $light-gray
 		color: $light
 		width: 150px
+		margin 50px 0
 		margin-right 15px
 
 	&:before
@@ -31,9 +32,17 @@
 	&-save
 		background-color $positive
 		color $light
+		margin 50px 0
 
 		&:before
 			icon($icon-checked, 'FontAwesome', 22px)
+
+	&-new
+		background-color $positive
+		color $light
+
+		&:before
+			icon($icon-new, 'FontAwesome', 22px)
 
 	&:disabled
 		pointer-events none

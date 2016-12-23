@@ -3,6 +3,7 @@ import {Http, RequestOptions, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs';
 import {IOffer} from '../models/IOffer';
+import { UUID } from 'angular2-uuid';
 
 @Injectable()
 export class OfferService {
@@ -38,8 +39,7 @@ export class OfferService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    offer.ID = 3;
-    offer.PRECO = null;
+    offer.ID = Math.floor(this.crc32(UUID.UUID())/1000000);
     offer.EXIBIR = null;
 
     return this.http.post(`${this.apiUrl}/offer`, JSON.stringify(offer), options)
@@ -80,5 +80,29 @@ export class OfferService {
     }
     return Observable.throw(errorMessage);
   }
+
+  makeCRCTable(): any {
+    let c;
+    let crcTable = [];
+    for(var n =0; n < 256; n++){
+      c = n;
+      for(var k =0; k < 8; k++){
+        c = ((c&1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
+      }
+      crcTable[n] = c;
+    }
+    return crcTable;
+  }
+
+  crc32(str: string): number {
+    var crcTable = this.makeCRCTable();
+    var crc = 0 ^ (-1);
+
+    for (var i = 0; i < str.length; i++ ) {
+      crc = (crc >>> 8) ^ crcTable[(crc ^ str.charCodeAt(i)) & 0xFF];
+    }
+
+    return (crc ^ (-1)) >>> 0;
+  };
 
 }

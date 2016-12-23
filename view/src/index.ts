@@ -5,6 +5,7 @@ import '@angular/common';
 import 'rxjs';
 
 import './assets/styl/index.styl';
+import '../node_modules/ng2-toastr/ng2-toastr.css';
 
 import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';

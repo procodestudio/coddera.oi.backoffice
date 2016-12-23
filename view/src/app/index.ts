@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import {routing, RootComponent} from './routes';
 import { ReactiveFormsModule } from '@angular/forms';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 import {HeaderComponent} from "../components/header/header";
 import {OfferService} from "../providers/offer.service";
@@ -14,6 +15,7 @@ import {Autosize} from "../directives/autosize";
 
 @NgModule({
   imports: [
+    ToastModule,
     ReactiveFormsModule,
     BrowserModule,
     ModalModule.forRoot(),
