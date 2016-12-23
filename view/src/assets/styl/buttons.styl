@@ -1,4 +1,4 @@
-.send-button
+.button
 	display inline-block
 	position relative
 	border 0
@@ -8,8 +8,7 @@
 	text-transform uppercase
 	text-decoration none
 	letter-spacing 1px
-	background-color $positive
-	color $light
+
 	padding 15px 30px
 	padding-left 55px
 	border-radius 20px
@@ -18,7 +17,23 @@
 	width 186px
 	cursor pointer
 	pointer-events all
-	margin 20px 0
+	margin 50px 0
+
+	&-cancel
+		background-color $light-gray
+		color: $light
+		width: 150px
+		margin-right 15px
+
+	&:before
+		icon($icon-back, 'FontAwesome', 22px)
+
+	&-save
+		background-color $positive
+		color $light
+
+		&:before
+			icon($icon-checked, 'FontAwesome', 22px)
 
 	&:disabled
 		pointer-events none
@@ -30,7 +45,6 @@
 		opacity 1
 
 	&:before
-		icon($icon-checked, 'FontAwesome', 22px)
 		absolute()
 		top 50%
 		left 30px

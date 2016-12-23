@@ -34,6 +34,22 @@ export class OfferService {
       });
   }
 
+  newOffer(offer: IOffer): Observable<IOffer> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    offer.ID = 3;
+    offer.PRECO = null;
+    offer.EXIBIR = null;
+
+    return this.http.post(`${this.apiUrl}/offer`, JSON.stringify(offer), options)
+      .map(res => {
+        this.mappedOffer = <IOffer>res.json();
+
+        return this.mappedOffer;
+      });
+  }
+
   saveOffer(offer: IOffer): Observable<IOffer> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

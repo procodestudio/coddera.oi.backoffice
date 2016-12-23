@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {OfferService} from "../../providers/offer.service";
 import {IOffer} from "../../models/IOffer";
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'offer-edit',
@@ -12,10 +13,12 @@ export class OfferEditComponent {
   offerForm: FormGroup;
   offerId: string;
   offer: IOffer;
+  isLoading: boolean;
   private paramSubscribe: any;
 
   constructor(
     private offerService: OfferService,
+    private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
 
@@ -24,6 +27,8 @@ export class OfferEditComponent {
 
       if(this.offerId){
         this.loadOffer();
+      }else{
+        this.offer = <IOffer>{};
       }
     });
 
@@ -55,20 +60,34 @@ export class OfferEditComponent {
   }
 
   loadOffer(){
+    this.isLoading = true;
     this.offerService.getOffer(this.offerId).subscribe(offer => {
       this.offer = offer;
       this.setFormValues(this.offer, this.offerForm);
+      this.isLoading = false;
     });
   }
 
   saveOffer(){
-    this.offerService.saveOffer(this.offer).subscribe(offer => {
-      console.log(offer);
-    });
+    if(this.offer.ID){
+      this.offerService.saveOffer(this.offer).subscribe(offer => {
+        console.log(offer);
+      });
+    }else{
+      this.offerService.newOffer(this.offer).subscribe(offer => {
+        console.log(offer);
+      });
+    }
+
   }
 
   setFormValues(offer: IOffer , formGroup: FormGroup){
     formGroup.setValue(offer, { onlySelf: true });
+  }
+
+
+  goBackToList(){
+    this.router.navigate(['/offer']);
   }
 
   private isNullOrUndefined(value: string){

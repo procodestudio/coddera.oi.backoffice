@@ -11,8 +11,9 @@ import {OfferEditComponent} from "../pages/offer/offer.edit";
 export class RootComponent {}
 
 export const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: OfferListComponent },
   { path: 'offer', component: OfferListComponent },
+  { path: 'offer/new', component: OfferEditComponent },
   { path: 'offer/:id', component: OfferEditComponent }
 ];
 

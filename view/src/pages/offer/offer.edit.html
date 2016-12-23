@@ -32,10 +32,16 @@
       </div>
 
       <div>
-        <button class="send-button" type="submit" [disabled]="!offerForm.valid" (click)="saveOffer()">Salvar</button>
+        <button class="button button-save" type="submit" [disabled]="!offerForm.valid" (click)="saveOffer()">Salvar</button>
+        <button class="button button-cancel" type="button" (click)="goBackToList()">Voltar</button>
       </div>
 
     </form>
+  </div>
+
+  <div class="loader-overlay" *ngIf="isLoading"></div>
+  <div class="loader-container" *ngIf="isLoading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
   </div>
 
 </div>

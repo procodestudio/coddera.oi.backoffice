@@ -12,14 +12,17 @@ import {Router} from "@angular/router";
 })
 export class OfferListComponent {
   offers: IOffer[];
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
     private offerService: OfferService,
     public modal: Modal) {
 
+    this.isLoading = true;
     this.offerService.getOffers().subscribe(offers => {
       this.offers = offers;
+      this.isLoading = false;
     });
   }
 
@@ -40,5 +43,4 @@ export class OfferListComponent {
   openOffer(offer: IOffer) {
     this.router.navigate(['/offer', offer.ID]);
   }
-
 }

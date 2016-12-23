@@ -28,6 +28,11 @@
       </tr>
       </tbody>
     </table>
-
   </div>
+
+  <div class="loader-overlay" *ngIf="isLoading"></div>
+  <div class="loader-container" *ngIf="isLoading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div>
+
 </div>
