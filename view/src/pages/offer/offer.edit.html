@@ -9,12 +9,12 @@
         <label>Nome</label>
       </div>
       <div class="form-input form-input-textarea">
-        <textarea [(ngModel)]="offer.DESCRICAO" formControlName="DESCRICAO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.DESCRICAO) }">
+        <textarea [(ngModel)]="offer.DESCRICAO" formControlName="DESCRICAO" autosize>
         </textarea>
         <label>Descrição</label>
       </div>
       <div class="form-input form-input-textarea">
-         <textarea [(ngModel)]="offer.SCRIPT" formControlName="SCRIPT" [ngClass]="{ 'has-value': isNullOrUndefined(offer.SCRIPT) }">
+         <textarea [(ngModel)]="offer.SCRIPT" formControlName="SCRIPT" autosize>
         </textarea>
         <label>Script</label>
       </div>
