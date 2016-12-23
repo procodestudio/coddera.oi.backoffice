@@ -2,6 +2,7 @@
 const path = require('path');
 const R = require('ramda');
 const permissionUserDao = require(path.resolve('src/dao/permissionUser'));
+const serializeError = require('serialize-error');
 const permissionUserController = {
 
 
@@ -14,7 +15,7 @@ const permissionUserController = {
       let result = [];
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
 
         if(permissions.rows && permissions.rows.length > 0) {
@@ -34,7 +35,7 @@ const permissionUserController = {
     permissionUserDao.save(permissionUser, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -51,7 +52,7 @@ const permissionUserController = {
     permissionUserDao.remove(permissionCode, userId, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }

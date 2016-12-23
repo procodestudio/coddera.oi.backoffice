@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const permissionDao = require(path.resolve('src/dao/permission'));
+const serializeError = require('serialize-error');
 const permissionController = {
 
 
@@ -13,7 +14,7 @@ const permissionController = {
       let result = {};
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
 
         if(permissions.rows && permissions.rows.length > 0) {
@@ -31,7 +32,7 @@ const permissionController = {
     permissionDao.getAll(function(err, permissions) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(permissions.rows || [] );
       }
@@ -46,7 +47,7 @@ const permissionController = {
     permissionDao.save(permission, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -65,7 +66,7 @@ const permissionController = {
     permissionDao.update(permission, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -81,7 +82,7 @@ const permissionController = {
     permissionDao.remove(permissionId, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }

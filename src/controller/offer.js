@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const offerDao = require(path.resolve('src/dao/offer'));
+const serializeError = require('serialize-error');
 const offerController = {
 
 
@@ -13,7 +14,7 @@ const offerController = {
       let result = {};
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
 
         if(offers.rows && offers.rows.length > 0) {
@@ -31,7 +32,7 @@ const offerController = {
     offerDao.getAll(function(err, offers) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(offers.rows || [] );
       }
@@ -46,7 +47,7 @@ const offerController = {
     offerDao.save(offer, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -65,7 +66,7 @@ const offerController = {
     offerDao.update(offer, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -81,7 +82,7 @@ const offerController = {
     offerDao.remove(offerId, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }

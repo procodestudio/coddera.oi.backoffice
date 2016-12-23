@@ -1,5 +1,6 @@
 'use strict';
 const path = require('path');
+const serializeError = require('serialize-error');
 const clientRefusalDao = require(path.resolve('src/dao/clientRefusal'));
 const clientRefusalController = {
 
@@ -12,7 +13,7 @@ const clientRefusalController = {
       let result = {};
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
 
         if(items.rows && items.rows.length > 0) {
@@ -30,7 +31,7 @@ const clientRefusalController = {
     clientRefusalDao.getAll(function(err, items) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(items.rows || [] );
       }
@@ -45,7 +46,7 @@ const clientRefusalController = {
     clientRefusalDao.save(item, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -64,7 +65,7 @@ const clientRefusalController = {
     clientRefusalDao.update(item, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -80,7 +81,7 @@ const clientRefusalController = {
     clientRefusalDao.remove(id, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }

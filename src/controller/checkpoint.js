@@ -1,5 +1,6 @@
 'use strict';
 const path = require('path');
+const serializeError = require('serialize-error');
 const checkpointDao = require(path.resolve('src/dao/checkpoint'));
 const checkpointController = {
 
@@ -13,7 +14,7 @@ const checkpointController = {
       let result = {};
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
 
         if(checkpoints.rows && checkpoints.rows.length > 0) {
@@ -31,7 +32,7 @@ const checkpointController = {
     checkpointDao.getAll(function(err, checkpoints) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(checkpoints.rows || [] );
       }
@@ -46,7 +47,7 @@ const checkpointController = {
     checkpointDao.save(offer, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -64,7 +65,7 @@ const checkpointController = {
     checkpointDao.update(checkpoint, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
@@ -80,7 +81,7 @@ const checkpointController = {
     checkpointDao.remove(checkpointId, function(err, result) {
 
       if(err) {
-        res.status(500).json(err);
+        res.status(500).json(serializeError(err));
       } else {
         res.status(200).json(result);
       }
