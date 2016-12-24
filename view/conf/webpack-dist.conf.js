@@ -45,6 +45,14 @@ module.exports = {
         loaders: [
           'html-loader'
         ]
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
       }
     ]
   },
@@ -64,6 +72,14 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {unused: true, dead_code: true, warnings: false} // eslint-disable-line camelcase
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      stylus: {
+        default: {
+          use: [jeet(), axis(), rupture()],
+        }
+      },
     }),
     new ExtractTextPlugin('index-[contenthash].css'),
     new webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
