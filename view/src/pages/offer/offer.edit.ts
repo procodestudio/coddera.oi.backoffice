@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OfferService} from '../../providers/offer.service';
+import {OfferValidator} from '../../validators/offer.validator';
 import {IOffer} from '../../models/IOffer';
 import { Router, ActivatedRoute } from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -20,6 +21,7 @@ export class OfferEditComponent {
   constructor(
     public toastr: ToastsManager,
     private offerService: OfferService,
+    private offerValidator: OfferValidator,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
@@ -34,32 +36,7 @@ export class OfferEditComponent {
       }
     });
 
-    this.offerForm = formBuilder.group({
-      ID: [''],
-      NOME: ['',
-        [
-          <any>Validators.required,
-          <any>Validators.minLength(5),
-          <any>Validators.maxLength(20)
-        ]
-      ],
-      DESCRICAO: ['',
-        [
-          <any>Validators.required,
-          <any>Validators.minLength(5)
-        ]
-      ],
-      PRECO: [''],
-      SCRIPT: ['',
-        [
-          <any>Validators.required,
-          <any>Validators.minLength(5)
-        ]
-      ],
-      ID_BENEFICIO: [''],
-      ID_PROGRAMA: [''],
-      EXIBIR: ['']
-    });
+    this.offerForm = offerValidator.get();
   }
 
   loadOffer(){

@@ -11,6 +11,7 @@ import {OfferListComponent} from "../pages/offer/offer.list";
 import { ModalModule } from 'angular2-modal';
 import {OfferEditComponent} from "../pages/offer/offer.edit";
 import {Autosize} from "../directives/autosize";
+import {OfferValidator} from "../validators/offer.validator";
 
 
 @NgModule({
@@ -30,6 +31,9 @@ import {Autosize} from "../directives/autosize";
     Autosize
   ],
   bootstrap: [RootComponent],
-  providers: [OfferService]
+  providers: [
+    OfferService,
+    OfferValidator
+  ]
 })
 export class AppModule {}
