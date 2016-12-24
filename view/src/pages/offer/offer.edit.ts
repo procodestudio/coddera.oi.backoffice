@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {OfferService} from "../../providers/offer.service";
-import {IOffer} from "../../models/IOffer";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {OfferService} from '../../providers/offer.service';
+import {IOffer} from '../../models/IOffer';
 import { Router, ActivatedRoute } from '@angular/router';
-import {ToastsManager} from "ng2-toastr/ng2-toastr";
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 
 @Component({
@@ -72,27 +72,36 @@ export class OfferEditComponent {
   }
 
   saveOffer(){
+    this.isLoading = true;
+
     if(this.offer.ID){
       this.offerService.saveOffer(this.offer).subscribe(offer => {
         this.toastr.success('Oferta criada com sucesso!');
         this.goBackToList();
+      }, error => {
+        this.isLoading = true;
+        this.toastr.error('Houve um problema ao criar a oferta!');
+        console.log(error);
       });
 
     }else{
       this.offerService.newOffer(this.offer).subscribe(offer => {
         this.toastr.success('Oferta salva com sucesso!');
         this.goBackToList();
+      }, error => {
+        this.isLoading = true;
+        this.toastr.error('Houve um problema ao salvar a oferta!');
+        console.log(error);
       });
     }
-
   }
 
   setFormValues(offer: IOffer , formGroup: FormGroup){
     formGroup.setValue(offer, { onlySelf: true });
   }
 
-
   goBackToList(){
+    this.isLoading = false;
     this.router.navigate(['/offer']);
   }
 
