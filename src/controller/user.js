@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const userDao = require(path.resolve('src/dao/user'));
+const authenticate = require(path.resolve('src/util/authenticate'));
 const userController = {
 
 
@@ -18,6 +19,7 @@ const userController = {
 
         if(users.rows && users.rows.length > 0) {
           result = users.rows[0];
+          result.session = authenticate.getNewToken()
         }
 
         res.status(200).json(result);
