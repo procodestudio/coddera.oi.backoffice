@@ -1,6 +1,6 @@
 const path = require('path');
 const http = require('http');
-var cors = require('cors');
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -22,13 +22,15 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(helmet());
 
-app.all('*', function(req, res, next) {
+app.all('/api/*', function(req, res, next) {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   next();
 });
 
-app.use('/', express.static('view/dist'));
+app.get('/', function(req, res){
+  res.sendFile( path.resolve('public/index.html') );
+});
 
 offerRoutes(app);
 checkpointRoutes(app);
