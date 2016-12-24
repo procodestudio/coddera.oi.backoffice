@@ -28,6 +28,8 @@ app.all('*', function(req, res, next) {
   next();
 });
 
+app.use('/', express.static('view/dist'));
+
 offerRoutes(app);
 checkpointRoutes(app);
 userRoutes(app);
