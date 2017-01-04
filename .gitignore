@@ -57,3 +57,6 @@ jspm_packages
 *.gypi
 
 .DS_Store
+
+#It's generated when run npm start
+public/
