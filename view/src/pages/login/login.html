@@ -1,0 +1,28 @@
+<div class="main-content-container">
+  <span defaultOverlayTarget></span>
+
+  <div class="main-content-container__header">
+    <h1 class="main-content-container__title">Acesso ao sistema</h1>
+  </div>
+
+  <div class="table-container">
+    <div class="form-input">
+      <input type="text" [(ngModel)]="user" [ngClass]="{ 'has-value': isNullOrUndefined(user) }">
+      <label>Usuario</label>
+    </div>
+    <div class="form-input">
+      <input type="password" [(ngModel)]="password" [ngClass]="{ 'has-value': isNullOrUndefined(password) }">
+      <label>Senha</label>
+    </div>
+
+    <div>
+      <button class="button button-save" type="submit" (click)="doLogin(user, password)">Entrar</button>
+    </div>
+  </div>
+
+  <div class="loader-overlay" *ngIf="isLoading"></div>
+  <div class="loader-container" *ngIf="isLoading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div>
+
+</div>
