@@ -5,17 +5,18 @@ import {OfferValidator} from '../../validators/offer.validator';
 import {IOffer} from '../../models/IOffer';
 import { Router, ActivatedRoute } from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import {BasePageComponent} from "../../components/base-page-component/base-page-component";
+import {IError} from "../../models/IError";
 
 
 @Component({
   selector: 'offer-edit',
   template: require('./offer.edit.html')
 })
-export class OfferEditComponent {
+export class OfferEditComponent extends BasePageComponent{
   offerForm: FormGroup;
   offerId: string;
   offer: IOffer;
-  isLoading: boolean;
   private paramSubscribe: any;
 
   constructor(
@@ -25,6 +26,8 @@ export class OfferEditComponent {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
+
+    super(router, toastr);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.offerId = params['id'];
@@ -45,6 +48,9 @@ export class OfferEditComponent {
       this.offer = offer;
       this.setFormValues(this.offer, this.offerForm);
       this.isLoading = false;
+    }, error => {
+      this.handleError(<IError>error);
+      console.log(error);
     });
   }
 
@@ -53,21 +59,19 @@ export class OfferEditComponent {
 
     if(this.offer.ID){
       this.offerService.saveOffer(this.offer).subscribe(offer => {
-        this.toastr.success('Oferta criada com sucesso!');
+        this.toastr.success('Oferta salva com sucesso!');
         this.goBackToList();
       }, error => {
-        this.isLoading = true;
-        this.toastr.error('Houve um problema ao criar a oferta!');
+        this.handleError(<IError>error);
         console.log(error);
       });
 
     }else{
       this.offerService.newOffer(this.offer).subscribe(offer => {
-        this.toastr.success('Oferta salva com sucesso!');
+        this.toastr.success('Oferta criada com sucesso!');
         this.goBackToList();
       }, error => {
-        this.isLoading = true;
-        this.toastr.error('Houve um problema ao salvar a oferta!');
+        this.handleError(<IError>error);
         console.log(error);
       });
     }

@@ -11,7 +11,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {LocalStorageService} from 'ng2-webstorage';
-
+import {IError} from "../models/IError";
 
 @Injectable()
 export class HttpInterceptor extends Http {
@@ -29,6 +29,52 @@ export class HttpInterceptor extends Http {
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
     this.beforeRequest();
     return super.get(this.getFullUrl(url), this.customizeOptions(options))
+      .catch(this.onCatch)
+      .do((res: Response) => {
+        this.onSuccess(res);
+      }, (error: any) => {
+        this.onError(error);
+      })
+      .finally(() => {
+        this.onFinally();
+      });
+  }
+
+  delete(url: string, options?: RequestOptionsArgs): Observable<any> {
+    this.beforeRequest();
+    return super.delete(this.getFullUrl(url), this.customizeOptions(options))
+      .catch(this.onCatch)
+      .do((res: Response) => {
+        this.onSuccess(res);
+      }, (error: any) => {
+        this.onError(error);
+      })
+      .finally(() => {
+        this.onFinally();
+      });
+  }
+
+  post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
+    if(url.indexOf('user/login') === -1){
+      options = this.customizeOptions(options);
+    }
+
+    this.beforeRequest();
+    return super.post(this.getFullUrl(url), body, options)
+      .catch(this.onCatch)
+      .do((res: Response) => {
+        this.onSuccess(res);
+      }, (error: any) => {
+        this.onError(error);
+      })
+      .finally(() => {
+        this.onFinally();
+      });
+  }
+
+  put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
+    this.beforeRequest();
+    return super.put(this.getFullUrl(url), body, this.customizeOptions(options))
       .catch(this.onCatch)
       .do((res: Response) => {
         this.onSuccess(res);
@@ -71,10 +117,15 @@ export class HttpInterceptor extends Http {
 
   private onCatch(error: any, caught: Observable<any>): Observable<any> {
     if (error.status  == 401 || error.status == 400 || error.status == 403) {
-      window.location.href = ('/login');
-      return Observable.empty();
+      return Observable.throw(<IError> {
+        redirect: true,
+        message: "Sessão expirada, favor refaça o login"
+      });
     } else {
-      return Observable.throw(error);
+      return Observable.throw(<IError> {
+        redirect: false,
+        message: "Houve um problema ao processar sua requisição."
+      });
     }
   }
 
@@ -82,11 +133,9 @@ export class HttpInterceptor extends Http {
   }
 
   private onSuccess(res: Response): void {
-    console.log(res);
   }
 
   private onFinally(): void {
     this.afterRequest();
   }
-
 }

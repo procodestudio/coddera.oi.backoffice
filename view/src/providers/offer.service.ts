@@ -36,13 +36,10 @@ export class OfferService {
   }
 
   newOffer(offer: IOffer): Observable<IOffer> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
     offer.ID = Math.floor(this.crc32(UUID.UUID())/1000000);
     offer.EXIBIR = null;
 
-    return this.http.post(`${this.apiUrl}/offer`, JSON.stringify(offer), options)
+    return this.http.post(`${this.apiUrl}/offer`, JSON.stringify(offer))
       .map(res => {
         this.mappedOffer = <IOffer>res.json();
 
@@ -51,10 +48,7 @@ export class OfferService {
   }
 
   saveOffer(offer: IOffer): Observable<IOffer> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.put(`${this.apiUrl}/offer/${offer.ID}`, JSON.stringify(offer), options)
+    return this.http.put(`${this.apiUrl}/offer/${offer.ID}`, JSON.stringify(offer))
       .map(res => {
         this.mappedOffer = <IOffer>res.json();
 

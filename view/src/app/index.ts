@@ -17,6 +17,7 @@ import {RequestOptions} from "@angular/http";
 import {HttpInterceptor} from "./http-interceptor";
 import {LoginComponent} from "../pages/login/login";
 import {UserService} from "../providers/user.service";
+import {BasePageComponent} from "../components/base-page-component/base-page-component";
 
 @NgModule({
   imports: [
