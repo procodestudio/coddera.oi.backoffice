@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import {HttpModule, XHRBackend, Http} from '@angular/http';
 import {routing, RootComponent} from './routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
@@ -12,7 +12,8 @@ import { ModalModule } from 'angular2-modal';
 import {OfferEditComponent} from "../pages/offer/offer.edit";
 import {Autosize} from "../directives/autosize";
 import {OfferValidator} from "../validators/offer.validator";
-
+import {RequestOptions} from "@angular/http";
+import {HttpInterceptor} from "./http-interceptor";
 
 @NgModule({
   imports: [
@@ -33,7 +34,15 @@ import {OfferValidator} from "../validators/offer.validator";
   bootstrap: [RootComponent],
   providers: [
     OfferService,
-    OfferValidator
+    OfferValidator,
+    {
+      provide: Http,
+      useFactory:
+        (backend: XHRBackend, defaultOptions: RequestOptions) => {
+          return new HttpInterceptor(backend, defaultOptions);
+        },
+      deps: [ XHRBackend, RequestOptions ]
+    }
   ]
 })
 export class AppModule {}
