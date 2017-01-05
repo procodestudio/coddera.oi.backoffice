@@ -25,8 +25,13 @@ export class LoginComponent {
   doLogin(user: string, password: string) {
       this.isLoading = true;
       this.userService.login(user, Md5.hashStr(password).toString()).subscribe(response => {
-        this.storage.store('access', response);
         this.isLoading = false;
+        if(!response.USUARIO){
+          this.toastr.error('Usuário ou senha incorreto(s)!');
+        }else{
+          this.storage.store('access', response);
+          this.router.navigate(['offer']);
+        }
       }, error => {
         this.isLoading = false;
         this.toastr.error('Usuário ou senha incorreto(s)!');

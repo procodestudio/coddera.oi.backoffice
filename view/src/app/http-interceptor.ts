@@ -10,16 +10,20 @@ import {
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import {LocalStorageService} from 'ng2-webstorage';
 
 
 @Injectable()
 export class HttpInterceptor extends Http {
+  _storage: LocalStorageService;
 
   constructor(
     backend: ConnectionBackend,
-    defaultOptions: RequestOptions
+    defaultOptions: RequestOptions,
+    private storage: LocalStorageService
   ) {
     super(backend, defaultOptions);
+    this._storage = storage;
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
@@ -47,6 +51,14 @@ export class HttpInterceptor extends Http {
     if (options.headers == null) {
       options.headers = new Headers();
     }
+
+    var userData = this._storage.retrieve('access');
+
+    if(!userData){
+      window.location.href = ('/login');
+    }
+
+    options.headers.append('x-access-token', userData.session.token);
     options.headers.append('Content-Type', 'application/json');
     return options;
   }
@@ -58,7 +70,7 @@ export class HttpInterceptor extends Http {
   }
 
   private onCatch(error: any, caught: Observable<any>): Observable<any> {
-    if (error.status  == 401) {
+    if (error.status  == 401 || error.status == 400 || error.status == 403) {
       window.location.href = ('/login');
       return Observable.empty();
     } else {

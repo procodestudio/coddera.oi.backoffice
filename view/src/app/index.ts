@@ -4,7 +4,7 @@ import {HttpModule, XHRBackend, Http} from '@angular/http';
 import {routing, RootComponent} from './routes';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
-import {Ng2Webstorage} from 'ng2-webstorage';
+import {Ng2Webstorage, LocalStorageService} from 'ng2-webstorage';
 
 import {HeaderComponent} from "../components/header/header";
 import {OfferService} from "../providers/offer.service";
@@ -45,10 +45,10 @@ import {UserService} from "../providers/user.service";
     {
       provide: Http,
       useFactory:
-        (backend: XHRBackend, defaultOptions: RequestOptions) => {
-          return new HttpInterceptor(backend, defaultOptions);
+        (backend: XHRBackend, defaultOptions: RequestOptions, storage: LocalStorageService) => {
+          return new HttpInterceptor(backend, defaultOptions, storage);
         },
-      deps: [ XHRBackend, RequestOptions ]
+      deps: [ XHRBackend, RequestOptions, LocalStorageService ]
     }
   ]
 })
