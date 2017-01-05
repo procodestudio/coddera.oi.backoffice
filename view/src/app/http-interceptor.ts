@@ -101,7 +101,8 @@ export class HttpInterceptor extends Http {
     var userData = this._storage.retrieve('access');
 
     if(!userData){
-      window.location.href = ('/login');
+      window.location.href = ('/#/login');
+      return options;
     }
 
     options.headers.append('x-access-token', userData.session.token);
