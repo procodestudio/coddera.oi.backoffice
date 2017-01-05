@@ -2,14 +2,14 @@
 
   <img class="header__logo" src="/assets/images/logo_oi.png">
 
-  <div class="info-box info-box--user">
+  <div class="info-box info-box--user" *ngIf="authenticatedUser">
     <h1 class="info-box__title">Usuário autenticado</h1>
-    <span class="info-box__data info-box--phone__data">thiago.sciotta@procode.studio</span>
+    <span class="info-box__data info-box--phone__data">{{authenticatedUser.NOME}} ({{authenticatedUser.USUARIO}})</span>
   </div>
 
 </div>
 
-<div class="header-menu">
+<div class="header-menu" *ngIf="authenticatedUser">
   <ul>
     <li>Ofertas</li>
     <li>Checkpoints</li>
