@@ -32,6 +32,10 @@ export class UserService {
     return <ILogin>userData;
   }
 
+  logout(): void {
+    this.storage.clear('access');
+  }
+
   handleError(error): any {
     console.error(error.json());
     let errorMessage: any;

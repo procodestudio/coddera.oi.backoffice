@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {UserService} from "../../providers/user.service";
 import {ILogin} from "../../models/ILogin";
+import {LocalStorageService} from 'ng2-webstorage';
 
 @Component({
   selector: 'oiheader',
@@ -9,7 +10,14 @@ import {ILogin} from "../../models/ILogin";
 export class HeaderComponent {
   authenticatedUser: ILogin;
 
-  constructor(public userService: UserService) {
-    this.authenticatedUser = userService.getLoggedUser();
+  constructor(
+    public userService: UserService,
+    public storage: LocalStorageService
+  ) {
+  }
+
+  ngOnInit() {
+    this.storage.observe('access')
+      .subscribe((value) => this.authenticatedUser = this.userService.getLoggedUser());
   }
 }

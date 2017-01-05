@@ -20,6 +20,7 @@ export class LoginComponent {
     private userService: UserService,
     private storage: LocalStorageService
   ) {
+    userService.logout();
   }
 
   doLogin(user: string, password: string) {
