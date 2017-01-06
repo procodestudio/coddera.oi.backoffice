@@ -28,7 +28,7 @@ let authentication = {
         let nowTime = moment();
 
         if( sessionTime.isSameOrBefore(nowTime) ) {
-          res.status(403).end();
+          res.status(401).end();
         } else {
 
           sessions = R.reject(function(item) {
