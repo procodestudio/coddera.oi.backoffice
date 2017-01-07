@@ -42,8 +42,6 @@ export class UserService extends IService<IUser>{
     this.storage.clear('access');
   }
 
-
-
   handleError(error): any {
     console.error(error.json());
     let errorMessage: any;

@@ -1,0 +1,38 @@
+<div class="main-content-container">
+  <span defaultOverlayTarget></span>
+
+  <div class="form-container" *ngIf="item">
+
+    <div class="main-content-container__header">
+      <h1 class="main-content-container__title" *ngIf="item.ID">Edição de checklist</h1>
+      <h1 class="main-content-container__title" *ngIf="!item.ID">Nova checklist</h1>
+    </div>
+
+    <form [formGroup]="formGroup" >
+      <div class="form-input">
+        <input type="text" [(ngModel)]="item.NOME" formControlName="NOME" [ngClass]="{ 'has-value': isNullOrUndefined(item.NOME) }">
+        <label>Nome</label>
+      </div>
+      <div class="form-input">
+        <input type="text" [(ngModel)]="item.STATUS" formControlName="STATUS" [ngClass]="{ 'has-value': isNullOrUndefined(item.STATUS) }">
+        <label>Status</label>
+      </div>
+      <div class="form-input">
+        <input type="number" [(ngModel)]="item.TIME_OUT" formControlName="TIME_OUT" [ngClass]="{ 'has-value': isNullOrUndefined(item.TIME_OUT) }">
+        <label>Timeout</label>
+      </div>
+
+      <div>
+        <button class="button button-save" type="submit" [disabled]="!formGroup.valid" (click)="saveItem()">Salvar</button>
+        <button class="button button-cancel" type="button" (click)="goBackToList()">Voltar</button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="loader-overlay" *ngIf="isLoading"></div>
+  <div class="loader-container" *ngIf="isLoading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div>
+
+</div>

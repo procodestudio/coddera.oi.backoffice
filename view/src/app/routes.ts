@@ -5,6 +5,8 @@ import {OfferEditComponent} from "../pages/offer/offer.edit";
 import {LoginComponent} from "../pages/login/login";
 import {UserListComponent} from "../pages/user/user.list";
 import {UserEditComponent} from "../pages/user/user.edit";
+import {CheckpointEditComponent} from "../pages/checkpoint/checkpoint.edit";
+import {CheckpointListComponent} from "../pages/checkpoint/checkpoint.list";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,9 @@ export const routes: Routes = [
   { path: 'offer', component: OfferListComponent },
   { path: 'offer/new', component: OfferEditComponent },
   { path: 'offer/:id', component: OfferEditComponent },
+  { path: 'checkpoint', component: CheckpointListComponent },
+  { path: 'checkpoint/new', component: CheckpointEditComponent },
+  { path: 'checkpoint/:id', component: CheckpointEditComponent},
   { path: 'user', component: UserListComponent },
   { path: 'user/new', component: UserEditComponent },
   { path: 'user/:id', component: UserEditComponent }

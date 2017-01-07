@@ -21,6 +21,10 @@ import {BasePageComponent} from "../components/base-page-component/base-page-com
 import {UserEditComponent} from "../pages/user/user.edit";
 import {UserListComponent} from "../pages/user/user.list";
 import {UserValidator} from "../validators/user.validator";
+import {CheckpointValidator} from "../validators/checkpoint.validator";
+import {CheckpointListComponent} from "../pages/checkpoint/checkpoint.list";
+import {CheckpointEditComponent} from "../pages/checkpoint/checkpoint.edit";
+import {CheckpointService} from "../providers/checkpoint.service";
 
 @NgModule({
   imports: [
@@ -40,6 +44,8 @@ import {UserValidator} from "../validators/user.validator";
     OfferEditComponent,
     UserListComponent,
     UserEditComponent,
+    CheckpointListComponent,
+    CheckpointEditComponent,
     HeaderComponent,
     Autosize
   ],
@@ -48,6 +54,8 @@ import {UserValidator} from "../validators/user.validator";
     OfferService,
     UserService,
     UserValidator,
+    CheckpointService,
+    CheckpointValidator,
     OfferValidator,
     {
       provide: Http,
