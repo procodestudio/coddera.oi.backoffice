@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {UserService} from "../../providers/user.service";
 import {ILogin} from "../../models/ILogin";
 import {LocalStorageService} from 'ng2-webstorage';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'oiheader',
@@ -12,7 +13,8 @@ export class HeaderComponent {
 
   constructor(
     public userService: UserService,
-    public storage: LocalStorageService
+    public storage: LocalStorageService,
+    public router: Router
   ) {
     this.authenticatedUser = this.userService.getLoggedUser();
   }
