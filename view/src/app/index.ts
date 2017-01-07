@@ -18,6 +18,9 @@ import {HttpInterceptor} from "./http-interceptor";
 import {LoginComponent} from "../pages/login/login";
 import {UserService} from "../providers/user.service";
 import {BasePageComponent} from "../components/base-page-component/base-page-component";
+import {UserEditComponent} from "../pages/user/user.edit";
+import {UserListComponent} from "../pages/user/user.list";
+import {UserValidator} from "../validators/user.validator";
 
 @NgModule({
   imports: [
@@ -35,6 +38,8 @@ import {BasePageComponent} from "../components/base-page-component/base-page-com
     LoginComponent,
     OfferListComponent,
     OfferEditComponent,
+    UserListComponent,
+    UserEditComponent,
     HeaderComponent,
     Autosize
   ],
@@ -42,6 +47,7 @@ import {BasePageComponent} from "../components/base-page-component/base-page-com
   providers: [
     OfferService,
     UserService,
+    UserValidator,
     OfferValidator,
     {
       provide: Http,

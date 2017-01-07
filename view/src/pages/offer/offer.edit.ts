@@ -8,7 +8,6 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {BasePageComponent} from "../../components/base-page-component/base-page-component";
 import {IError} from "../../models/IError";
 
-
 @Component({
   selector: 'offer-edit',
   template: require('./offer.edit.html')
@@ -86,9 +85,4 @@ export class OfferEditComponent extends BasePageComponent{
     this.isLoading = false;
     this.router.navigate(['/offer']);
   }
-
-  private isNullOrUndefined(value: string){
-    return (value != '' && value != undefined);
-  }
-
 }
