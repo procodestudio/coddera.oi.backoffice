@@ -14,6 +14,7 @@ export class HeaderComponent {
     public userService: UserService,
     public storage: LocalStorageService
   ) {
+    this.authenticatedUser = this.userService.getLoggedUser();
   }
 
   ngOnInit() {
