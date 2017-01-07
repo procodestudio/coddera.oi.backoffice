@@ -25,7 +25,7 @@ export class OfferListComponent extends BasePageComponent{
     super(router, toastr);
 
     this.isLoading = true;
-    this.offerService.getOffers().subscribe(offers => {
+    this.offerService.getAll().subscribe(offers => {
       this.offers = offers;
       this.isLoading = false;
     }, error => {
