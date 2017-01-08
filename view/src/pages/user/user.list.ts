@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import { Modal, JSNativeModalModule, providers } from 'angular2-modal/plugins/js-native';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {BasePageComponent} from "../../components/base-page-component/base-page-component";
 import {IError} from "../../models/IError";
