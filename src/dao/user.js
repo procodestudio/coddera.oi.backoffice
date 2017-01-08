@@ -55,7 +55,7 @@ let dao = {
         cb(err);
       } else {
         conn.execute(constants.query.user.save,
-          [obj.ID, obj.USUARIO, obj.SENHA, obj.NOME],
+          [obj.USUARIO, obj.SENHA, obj.NOME],
           { autoCommit: true},
           cb);
       }
