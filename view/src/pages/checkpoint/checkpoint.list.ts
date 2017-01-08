@@ -1,39 +1,39 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {OfferService} from '../../providers/offer.service';
-import {IOffer} from '../../models/IOffer';
 import { Modal, JSNativeModalModule, providers } from 'angular2-modal/plugins/js-native';
 import {Router} from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {BasePageComponent} from "../../components/base-page-component/base-page-component";
 import {IError} from "../../models/IError";
+import {CheckpointService} from "../../providers/checkpoint.service";
+import {ICheckpoint} from "../../models/ICheckpoint";
 
 @Component({
-  selector: 'offer-list',
-  template: require('./offer.list.html'),
+  selector: 'checkpoint-list',
+  template: require('./checkpoint.list.html'),
   providers: [providers],
   encapsulation: ViewEncapsulation.None
 })
-export class OfferListComponent extends BasePageComponent{
-  offers: IOffer[];
+export class CheckpointListComponent extends BasePageComponent{
+  items: ICheckpoint[];
 
   constructor(
     private router: Router,
     private toastr: ToastsManager,
-    private offerService: OfferService,
+    private service: CheckpointService,
     public modal: Modal) {
 
     super(router, toastr);
 
     this.isLoading = true;
-    this.offerService.getAll().subscribe(offers => {
-      this.offers = offers;
+    this.service.getAll().subscribe(items => {
+      this.items = items;
       this.isLoading = false;
     }, error => {
       this.handleError(<IError>error);
     });
   }
 
-  deleteOffer(offer: IOffer, index: number) {
+  deleteItem(item: ICheckpoint, index: number) {
     const dialog = this.modal.confirm()
       .message('Deseja realmente excluir esta oferta?')
       .open();
@@ -41,9 +41,9 @@ export class OfferListComponent extends BasePageComponent{
     dialog.then((resultPromise) => {
       return resultPromise.result.then((result) => {
         this.isLoading = true;
-        this.offerService.delete(offer).subscribe(response => {
-          this.offers.splice(index, 1);
-          this.toastr.success('Oferta excluida com sucesso!');
+        this.service.delete(item).subscribe(response => {
+          this.items.splice(index, 1);
+          this.toastr.success('Usuário excluido com sucesso!');
           this.isLoading = false;
         }, error => {
           this.handleError(<IError>error);
@@ -53,7 +53,7 @@ export class OfferListComponent extends BasePageComponent{
     });
   }
 
-  openOffer(offer: IOffer) {
-    this.router.navigate(['/offer', offer.ID]);
+  openItem(item: ICheckpoint) {
+    this.router.navigate(['/checkpoint', item.ID]);
   }
 }

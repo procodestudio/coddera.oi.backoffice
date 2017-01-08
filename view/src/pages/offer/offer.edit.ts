@@ -8,7 +8,6 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {BasePageComponent} from "../../components/base-page-component/base-page-component";
 import {IError} from "../../models/IError";
 
-
 @Component({
   selector: 'offer-edit',
   template: require('./offer.edit.html')
@@ -44,7 +43,7 @@ export class OfferEditComponent extends BasePageComponent{
 
   loadOffer(){
     this.isLoading = true;
-    this.offerService.getOffer(this.offerId).subscribe(offer => {
+    this.offerService.getOne(this.offerId).subscribe(offer => {
       this.offer = offer;
       this.setFormValues(this.offer, this.offerForm);
       this.isLoading = false;
@@ -58,7 +57,7 @@ export class OfferEditComponent extends BasePageComponent{
     this.isLoading = true;
 
     if(this.offer.ID){
-      this.offerService.saveOffer(this.offer).subscribe(offer => {
+      this.offerService.save(this.offer).subscribe(offer => {
         this.toastr.success('Oferta salva com sucesso!');
         this.goBackToList();
       }, error => {
@@ -67,7 +66,8 @@ export class OfferEditComponent extends BasePageComponent{
       });
 
     }else{
-      this.offerService.newOffer(this.offer).subscribe(offer => {
+      this.offer.EXIBIR = null;
+      this.offerService.saveNew(this.offer).subscribe(offer => {
         this.toastr.success('Oferta criada com sucesso!');
         this.goBackToList();
       }, error => {
@@ -85,9 +85,4 @@ export class OfferEditComponent extends BasePageComponent{
     this.isLoading = false;
     this.router.navigate(['/offer']);
   }
-
-  private isNullOrUndefined(value: string){
-    return (value != '' && value != undefined);
-  }
-
 }

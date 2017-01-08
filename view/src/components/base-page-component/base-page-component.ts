@@ -19,4 +19,8 @@ export class BasePageComponent {
 
     this.isLoading = false;
   }
+
+  public isNullOrUndefined(value: string){
+    return (value != '' && value != undefined);
+  }
 }

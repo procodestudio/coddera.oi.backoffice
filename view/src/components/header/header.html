@@ -11,9 +11,9 @@
 
 <div class="header-menu" *ngIf="authenticatedUser">
   <ul>
-    <li>Ofertas</li>
-    <li>Checkpoints</li>
-    <li>Usuários</li>
+    <li routerLink="/offer" routerLinkActive="selected">Ofertas</li>
+    <li routerLink="/checkpoint" routerLinkActive="selected">Checkpoints</li>
+    <li routerLink="/user" routerLinkActive="selected">Usuários</li>
     <li>Permissões</li>
     <li>Recusas</li>
   </ul>

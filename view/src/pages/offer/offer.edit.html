@@ -1,11 +1,13 @@
 <div class="main-content-container">
   <span defaultOverlayTarget></span>
 
-  <div class="main-content-container__header">
-    <h1 class="main-content-container__title">Edição de oferta</h1>
-  </div>
-
   <div class="form-container" *ngIf="offer">
+
+    <div class="main-content-container__header">
+      <h1 class="main-content-container__title" *ngIf="offer.ID">Edição de oferta</h1>
+      <h1 class="main-content-container__title" *ngIf="!offer.ID">Nova oferta</h1>
+    </div>
+
     <form [formGroup]="offerForm" >
       <div class="form-input">
         <input type="text" [(ngModel)]="offer.NOME" formControlName="NOME" [ngClass]="{ 'has-value': isNullOrUndefined(offer.NOME) }">

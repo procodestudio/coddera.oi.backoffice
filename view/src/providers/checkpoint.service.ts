@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {IOffer} from '../models/IOffer';
 import {IService} from "./IService";
+import {ICheckpoint} from "../models/ICheckpoint";
 
 @Injectable()
-export class OfferService extends IService<IOffer> {
+export class CheckpointService extends IService<ICheckpoint> {
   constructor(public http: Http) {
-    super(http, 'offer');
+    super(http, 'checkpoint');
   }
 }

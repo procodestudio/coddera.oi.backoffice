@@ -1,0 +1,38 @@
+<div class="main-content-container">
+  <span defaultOverlayTarget></span>
+
+  <div class="main-content-container__header">
+    <h1 class="main-content-container__title">Controle de Usuários</h1>
+    <button class="button button-new" [routerLink]="['/user/new']">Novo usuário</button>
+  </div>
+
+  <div class="table-container">
+
+    <table>
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Usuário</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of items; let index = index">
+        <td>{{item.NOME}}</td>
+        <td>{{item.USUARIO}}</td>
+        <td>
+          <button (click)="deleteItem(item, index)">
+            <i class="fa fa-trash"></i>
+          </button>
+          <button (click)="openItem(item)">Editar item</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="loader-overlay" *ngIf="isLoading"></div>
+  <div class="loader-container" *ngIf="isLoading">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div>
+
+</div>
