@@ -37,8 +37,6 @@ export class IService<T extends IModelBase> {
   }
 
   saveNew(item: T): Observable<T> {
-    item.ID = Math.floor(this.crc32(UUID.UUID())/1000000);
-
     return this.http.post(`${this.apiUrl}/${this.apiName}`, JSON.stringify(item))
       .map(res => {
         this.mappedItem = <T>res.json();
@@ -74,29 +72,4 @@ export class IService<T extends IModelBase> {
     }
     return Observable.throw(errorMessage);
   }
-
-  makeCRCTable(): any {
-    let c;
-    let crcTable = [];
-    for(var n =0; n < 256; n++){
-      c = n;
-      for(var k =0; k < 8; k++){
-        c = ((c&1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
-      }
-      crcTable[n] = c;
-    }
-    return crcTable;
-  }
-
-  crc32(str: string): number {
-    var crcTable = this.makeCRCTable();
-    var crc = 0 ^ (-1);
-
-    for (var i = 0; i < str.length; i++ ) {
-      crc = (crc >>> 8) ^ crcTable[(crc ^ str.charCodeAt(i)) & 0xFF];
-    }
-
-    return (crc ^ (-1)) >>> 0;
-  };
-
 }

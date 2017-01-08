@@ -24,7 +24,7 @@
 
       <div>
         <button class="button button-save" type="submit" [disabled]="!formGroup.valid" (click)="saveItem()">Salvar</button>
-        <button class="button button-save" type="button" routerLink="/permission-user/{{item.ID}}">Permissões</button>
+        <button *ngIf="item.ID" class="button button-save" type="button" routerLink="/permission-user/{{item.ID}}">Permissões</button>
         <button class="button button-cancel" type="button" (click)="goBackToList()">Voltar</button>
       </div>
 
