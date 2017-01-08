@@ -39,7 +39,7 @@ let dao = {
         cb(err);
       } else {
         conn.execute(constants.query.checkpoint.save,
-          [obj.ID, obj.NOME, obj.STATUS, obj.TIME_OUT],
+          [obj.NOME, obj.STATUS, obj.TIME_OUT],
           { autoCommit: true},
           cb);
       }

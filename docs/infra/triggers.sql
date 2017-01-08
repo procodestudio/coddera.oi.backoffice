@@ -1,0 +1,33 @@
+CREATE SEQUENCE chkpoint_seq START WITH 10;
+CREATE SEQUENCE oferta_seq START WITH 10;
+CREATE SEQUENCE usuario_seq START WITH 10;
+
+CREATE OR REPLACE TRIGGER chkpoint_increment
+BEFORE INSERT ON chkpoint
+FOR EACH ROW
+
+BEGIN
+  SELECT chkpoint_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+CREATE OR REPLACE TRIGGER oferta_increment
+BEFORE INSERT ON oferta
+FOR EACH ROW
+
+BEGIN
+  SELECT oferta_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;
+
+CREATE OR REPLACE TRIGGER usuario_increment
+BEFORE INSERT ON usuario
+FOR EACH ROW
+
+BEGIN
+  SELECT usuario_seq.NEXTVAL
+  INTO   :new.id
+  FROM   dual;
+END;

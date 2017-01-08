@@ -45,7 +45,7 @@ let dao = {
         cb(err);
       } else {
         conn.execute(constants.query.offer.save,
-          [obj.ID, obj.NOME, obj.DESCRICAO, obj.SCRIPT, obj.PRECO, obj.EXIBIR, obj.ID_PROGRAMA, obj.ID_BENEFICIO],
+          [obj.NOME, obj.DESCRICAO, obj.SCRIPT, obj.PRECO, obj.EXIBIR, obj.ID_PROGRAMA, obj.ID_BENEFICIO],
           { autoCommit: true},
           cb);
       }
