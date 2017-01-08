@@ -4,4 +4,5 @@ export interface ILogin {
   SENHA: string;
   NOME: string;
   session: any;
+  permissions: string[];
 }

@@ -32,6 +32,13 @@ export class UserService extends IService<IUser>{
       });
   }
 
+  userPermissions(userId: number): Observable<string[]> {
+    return this.http.get(`${this.apiUrl}/permissionUser/${userId}`)
+      .map(res => {
+        return <string[]>res.json();
+      });
+  }
+
   getLoggedUser(): ILogin {
     var userData = this.storage.retrieve('access');
     if(!userData) return null;
@@ -40,6 +47,7 @@ export class UserService extends IService<IUser>{
 
   logout(): void {
     this.storage.clear('access');
+    this.storage.clear('permissions');
   }
 
   handleError(error): any {

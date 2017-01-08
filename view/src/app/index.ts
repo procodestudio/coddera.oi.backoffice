@@ -25,6 +25,8 @@ import {CheckpointValidator} from "../validators/checkpoint.validator";
 import {CheckpointListComponent} from "../pages/checkpoint/checkpoint.list";
 import {CheckpointEditComponent} from "../pages/checkpoint/checkpoint.edit";
 import {CheckpointService} from "../providers/checkpoint.service";
+import {PermissionComponent} from "../pages/permission-user/permission-user";
+import {PermissionService} from "../providers/permission.service";
 
 @NgModule({
   imports: [
@@ -44,6 +46,7 @@ import {CheckpointService} from "../providers/checkpoint.service";
     OfferEditComponent,
     UserListComponent,
     UserEditComponent,
+    PermissionComponent,
     CheckpointListComponent,
     CheckpointEditComponent,
     HeaderComponent,
@@ -51,6 +54,7 @@ import {CheckpointService} from "../providers/checkpoint.service";
   ],
   bootstrap: [RootComponent],
   providers: [
+    PermissionService,
     OfferService,
     UserService,
     UserValidator,

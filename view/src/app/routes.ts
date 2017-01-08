@@ -7,6 +7,7 @@ import {UserListComponent} from "../pages/user/user.list";
 import {UserEditComponent} from "../pages/user/user.edit";
 import {CheckpointEditComponent} from "../pages/checkpoint/checkpoint.edit";
 import {CheckpointListComponent} from "../pages/checkpoint/checkpoint.list";
+import {PermissionComponent} from "../pages/permission-user/permission-user";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'checkpoint', component: CheckpointListComponent },
   { path: 'checkpoint/new', component: CheckpointEditComponent },
   { path: 'checkpoint/:id', component: CheckpointEditComponent},
+  { path: 'permission-user/:userId', component: PermissionComponent},
   { path: 'user', component: UserListComponent },
   { path: 'user/new', component: UserEditComponent },
   { path: 'user/:id', component: UserEditComponent }
