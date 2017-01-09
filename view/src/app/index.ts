@@ -27,6 +27,7 @@ import {CheckpointEditComponent} from "../pages/checkpoint/checkpoint.edit";
 import {CheckpointService} from "../providers/checkpoint.service";
 import {PermissionComponent} from "../pages/permission-user/permission-user";
 import {PermissionService} from "../providers/permission.service";
+import {CanActivateRoutes} from "./can-activate-routes";
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import {PermissionService} from "../providers/permission.service";
   ],
   bootstrap: [RootComponent],
   providers: [
+    CanActivateRoutes,
     PermissionService,
     OfferService,
     UserService,

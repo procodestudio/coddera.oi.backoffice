@@ -3,13 +3,23 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Rx";
 import {IPermission} from "../models/IPermission";
+import {LocalStorageService} from "ng2-webstorage/dist/app";
+
 
 @Injectable()
 export class PermissionService {
   mappedItems: IPermission[];
   apiUrl = 'http://localhost:4500/api';
 
-  constructor(public http: Http) {}
+  constructor(public http: Http, private storage: LocalStorageService) {}
+
+  isUserLogged(): boolean {
+    return this.storage.retrieve('access');
+  }
+
+  getLoggedPermission(): string[] {
+    return this.storage.retrieve('permissions');
+  }
 
   getAll(): Observable<IPermission[]> {
     return this.http.get(`${this.apiUrl}/permission`)
