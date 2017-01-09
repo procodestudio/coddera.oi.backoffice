@@ -7,6 +7,7 @@ import {IError} from "../../models/IError";
 import {ICheckpoint} from "../../models/ICheckpoint";
 import {CheckpointService} from "../../providers/checkpoint.service";
 import {CheckpointValidator} from "../../validators/checkpoint.validator";
+import {PermissionService} from "../../providers/permission.service";
 
 @Component({
   selector: 'checkpoint-edit',
@@ -21,12 +22,13 @@ export class CheckpointEditComponent extends BasePageComponent{
   constructor(
     public toastr: ToastsManager,
     private service: CheckpointService,
+    private permissionService: PermissionService,
     private userValidator: CheckpointValidator,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
 
-    super(router, toastr);
+    super(router, toastr, permissionService);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.itemId = params['id'];

@@ -20,7 +20,7 @@
         <td>{{item.NOME}}</td>
         <td>{{item.USUARIO}}</td>
         <td>
-          <button (click)="deleteItem(item, index)">
+          <button (click)="deleteItem(item, index)" *ngIf="checkDeletePermission('user')">
             <i class="fa fa-trash"></i>
           </button>
           <button (click)="openItem(item)">Editar item</button>

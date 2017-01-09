@@ -1,14 +1,23 @@
 import {Router, ActivatedRoute} from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {IError} from "../../models/IError";
+import {PermissionService} from "../../providers/permission.service";
+import {Constants} from "../../app/constants";
 
 export class BasePageComponent {
   isLoading: boolean = false;
 
   constructor(
     private _router: Router,
-    private _toastr: ToastsManager
+    private _toastr: ToastsManager,
+    private _permissionService: PermissionService
   ) {
+  }
+
+  checkDeletePermission(moduleName: string){
+    var deletePermission = Constants.DELETE_PERMISSION[moduleName];
+    var loggedPermissions = this._permissionService.getLoggedPermission();
+    return loggedPermissions.indexOf(deletePermission) !== -1
   }
 
   handleError(error: IError) {

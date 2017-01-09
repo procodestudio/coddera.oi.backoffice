@@ -9,6 +9,8 @@ import {CheckpointEditComponent} from "../pages/checkpoint/checkpoint.edit";
 import {CheckpointListComponent} from "../pages/checkpoint/checkpoint.list";
 import {PermissionComponent} from "../pages/permission-user/permission-user";
 import {CanActivateRoutes} from "./can-activate-routes";
+import {WelcomeComponent} from "../pages/welcome/welcome";
+import {OfferService} from "../providers/offer.service";
 
 @Component({
   selector: 'app-root',
@@ -17,8 +19,8 @@ import {CanActivateRoutes} from "./can-activate-routes";
 export class RootComponent {}
 
 export const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { canActivate: [CanActivateRoutes], path: '', component: OfferListComponent },
-  { canActivate: [CanActivateRoutes], path: 'login', component: LoginComponent },
   { canActivate: [CanActivateRoutes], path: 'offer', component: OfferListComponent },
   { canActivate: [CanActivateRoutes], path: 'offer/new', component: OfferEditComponent },
   { canActivate: [CanActivateRoutes], path: 'offer/:id', component: OfferEditComponent },

@@ -49,7 +49,7 @@ export class LoginComponent {
           if(this.redirectUrl){
             this.router.navigateByUrl(this.redirectUrl);
           }else{
-            this.router.navigate(['offer']);
+            this.router.navigate(['']);
           }
         }, error => {
           this.isLoading = false;

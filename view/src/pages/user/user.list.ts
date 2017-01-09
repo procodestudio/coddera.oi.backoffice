@@ -6,6 +6,7 @@ import {BasePageComponent} from "../../components/base-page-component/base-page-
 import {IError} from "../../models/IError";
 import {UserService} from "../../providers/user.service";
 import {IUser} from "../../models/IUser";
+import {PermissionService} from "../../providers/permission.service";
 
 @Component({
   selector: 'user-list',
@@ -20,9 +21,10 @@ export class UserListComponent extends BasePageComponent{
     private router: Router,
     private toastr: ToastsManager,
     private service: UserService,
+    private permissionService: PermissionService,
     public modal: Modal) {
 
-    super(router, toastr);
+    super(router, toastr, permissionService);
 
     this.isLoading = true;
     this.service.getAll().subscribe(items => {

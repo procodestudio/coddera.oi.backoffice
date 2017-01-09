@@ -30,7 +30,7 @@ export class PermissionComponent extends BasePageComponent{
     private userService: UserService,
     public modal: Modal) {
 
-    super(router, toastr);
+    super(router, toastr, permissionService);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       var self = this;

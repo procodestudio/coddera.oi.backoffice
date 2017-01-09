@@ -24,7 +24,7 @@
         <td>{{offer.ID_PROGRAMA}}</td>
         <td>{{offer.ID_BENEFICIO}}</td>
         <td>
-          <button (click)="deleteOffer(offer, index)">
+          <button (click)="deleteOffer(offer, index)" *ngIf="checkDeletePermission('offer')">
             <i class="fa fa-trash"></i>
           </button>
           <button (click)="openOffer(offer)">Editar item</button>

@@ -6,6 +6,7 @@ import {BasePageComponent} from "../../components/base-page-component/base-page-
 import {IError} from "../../models/IError";
 import {CheckpointService} from "../../providers/checkpoint.service";
 import {ICheckpoint} from "../../models/ICheckpoint";
+import {PermissionService} from "../../providers/permission.service";
 
 @Component({
   selector: 'checkpoint-list',
@@ -20,9 +21,10 @@ export class CheckpointListComponent extends BasePageComponent{
     private router: Router,
     private toastr: ToastsManager,
     private service: CheckpointService,
+    private permissionService: PermissionService,
     public modal: Modal) {
 
-    super(router, toastr);
+    super(router, toastr, permissionService);
 
     this.isLoading = true;
     this.service.getAll().subscribe(items => {

@@ -6,6 +6,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {BasePageComponent} from "../../components/base-page-component/base-page-component";
 import {IError} from "../../models/IError";
+import {PermissionService} from "../../providers/permission.service";
 
 @Component({
   selector: 'offer-list',
@@ -20,9 +21,10 @@ export class OfferListComponent extends BasePageComponent{
     private router: Router,
     private toastr: ToastsManager,
     private offerService: OfferService,
+    private permissionService: PermissionService,
     public modal: Modal) {
 
-    super(router, toastr);
+    super(router, toastr, permissionService);
 
     this.isLoading = true;
     this.offerService.getAll().subscribe(offers => {

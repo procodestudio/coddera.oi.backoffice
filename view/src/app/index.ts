@@ -28,6 +28,7 @@ import {CheckpointService} from "../providers/checkpoint.service";
 import {PermissionComponent} from "../pages/permission-user/permission-user";
 import {PermissionService} from "../providers/permission.service";
 import {CanActivateRoutes} from "./can-activate-routes";
+import {WelcomeComponent} from "../pages/welcome/welcome";
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import {CanActivateRoutes} from "./can-activate-routes";
   declarations: [
     RootComponent,
     LoginComponent,
+    WelcomeComponent,
     OfferListComponent,
     OfferEditComponent,
     UserListComponent,

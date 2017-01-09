@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {BasePageComponent} from "../../components/base-page-component/base-page-component";
 import {IError} from "../../models/IError";
+import {PermissionService} from "../../providers/permission.service";
 
 @Component({
   selector: 'offer-edit',
@@ -20,13 +21,14 @@ export class OfferEditComponent extends BasePageComponent{
 
   constructor(
     public toastr: ToastsManager,
+    private permissionService: PermissionService,
     private offerService: OfferService,
     private offerValidator: OfferValidator,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
 
-    super(router, toastr);
+    super(router, toastr, permissionService);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.offerId = params['id'];

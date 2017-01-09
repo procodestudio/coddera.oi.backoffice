@@ -8,6 +8,7 @@ import {IError} from "../../models/IError";
 import {UserService} from "../../providers/user.service";
 import {UserValidator} from "../../validators/user.validator";
 import {Md5} from 'ts-md5/dist/md5';
+import {PermissionService} from "../../providers/permission.service";
 
 @Component({
   selector: 'user-edit',
@@ -22,12 +23,13 @@ export class UserEditComponent extends BasePageComponent{
   constructor(
     public toastr: ToastsManager,
     private service: UserService,
+    private permissionService: PermissionService,
     private userValidator: UserValidator,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
 
-    super(router, toastr);
+    super(router, toastr, permissionService);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.itemId = params['id'];

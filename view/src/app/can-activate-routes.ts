@@ -3,28 +3,45 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import {Constants} from "./constants";
 import {PermissionService} from "../providers/permission.service";
+import {ToastsManager} from "ng2-toastr/ng2-toastr";
 
 @Injectable()
 export class CanActivateRoutes implements CanActivate {
-  constructor(private permissionService: PermissionService, private router: Router) {}
+  constructor(
+    private permissionService: PermissionService,
+    private router: Router,
+    public toastr: ToastsManager
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean>|Promise<boolean>|boolean {
 
-    if(!this.permissionService.isUserLogged()){
-      var routeUrl = state.url;
+    var routePath = route.routeConfig.path;
 
-      if(routeUrl.indexOf('login') === -1){
-        this.router.navigate(['login', {redirectUrl: routeUrl}]);
+    if(!this.permissionService.isUserLogged()){
+
+
+      if(routePath.indexOf('login') === -1){
+        this.router.navigate(['login', {redirectUrl: routePath}]);
       }
-      
+
       return true;
     }
 
-    var urlPermission = Constants.URL_PERMISSION[route.routeConfig.path];
+    if(routePath === ''){
+      return true;
+    }
+
+    var urlPermission = Constants.URL_PERMISSION[routePath];
     var userServices = this.permissionService.getLoggedPermission();
 
-    return userServices.indexOf(urlPermission) !== -1;
+    if(userServices.indexOf(urlPermission) === -1){
+      this.toastr.success('Você não tem acesso a este recurso!');
+      //this.router.navigate(['']);
+      return false;
+    }
+
+    return true;
   }
 }
