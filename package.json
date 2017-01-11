@@ -4,8 +4,9 @@
   "description": "OI Backoffice",
   "main": "src/index.js",
   "scripts": {
-    "start": "cd view && gulp && cp -R dist/. ../public && cd .. && node src/index.js",
-    "install": "cd view && npm install"
+    "start": "node src/index.js",
+    "install": "cd view && npm install",
+    "build": "cd view && gulp && cp -R dist/. ../public && cd .."
   },
   "repository": {
     "type": "git",
