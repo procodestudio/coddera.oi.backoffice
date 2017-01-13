@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "install": "cd view && npm install",
-    "build": "cd view && gulp && cp -R dist/. ../public && cd .."
+    "build": "cd view && gulp && rm -rf ../public && cp -R dist/. ../public && cd .."
   },
   "repository": {
     "type": "git",
