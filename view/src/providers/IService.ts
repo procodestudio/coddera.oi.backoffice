@@ -3,9 +3,10 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs';
 import { UUID } from 'angular2-uuid';
 import {IModelBase} from "../models/IModelBase";
+import {Constants} from "../app/constants";
 
 export class IService<T extends IModelBase> {
-  apiUrl = 'http://localhost:4500/api';
+  apiUrl = Constants.API_URL;
   apiName: string;
   mappedItems: T[];
   mappedItem: T;

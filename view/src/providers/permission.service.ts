@@ -4,12 +4,13 @@ import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Rx";
 import {IPermission} from "../models/IPermission";
 import {LocalStorageService} from "ng2-webstorage/dist/app";
+import {Constants} from "../app/constants";
 
 
 @Injectable()
 export class PermissionService {
   mappedItems: IPermission[];
-  apiUrl = 'http://localhost:4500/api';
+  apiUrl = Constants.API_URL;
 
   constructor(public http: Http, private storage: LocalStorageService) {}
 

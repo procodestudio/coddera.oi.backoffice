@@ -33,4 +33,4 @@ export const routes: Routes = [
   { canActivate: [CanActivateRoutes], path: 'user/:id', component: UserEditComponent }
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes, {useHash: true});

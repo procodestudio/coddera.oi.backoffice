@@ -1,5 +1,7 @@
 export class Constants {
 
+  public static API_URL = 'http://localhost:4500/api';
+
   public static URL_PERMISSION = {
     'offer': "577d7c2a-bb7a-46a7-955d-ca0b93d004a0",
     'offer/:id': "11d4dac1-b07b-420d-b13e-6e11e613856b",

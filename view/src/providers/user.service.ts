@@ -6,10 +6,11 @@ import {ILogin} from "../models/ILogin";
 import {LocalStorageService} from 'ng2-webstorage';
 import {IUser} from "../models/IUser";
 import {IService} from "./IService";
+import {Constants} from "../app/constants";
 
 @Injectable()
 export class UserService extends IService<IUser>{
-  apiUrl = 'http://localhost:4500/api';
+  apiUrl = Constants.API_URL;
   authenticatedUser: ILogin;
   mappedUsers: IUser[];
   mappedUser: IUser;
