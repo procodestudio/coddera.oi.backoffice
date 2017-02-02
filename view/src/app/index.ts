@@ -11,13 +11,11 @@ import {OfferService} from "../providers/offer.service";
 import {OfferListComponent} from "../pages/offer/offer.list";
 import { ModalModule } from 'angular2-modal';
 import {OfferEditComponent} from "../pages/offer/offer.edit";
-import {Autosize} from "../directives/autosize";
 import {OfferValidator} from "../validators/offer.validator";
 import {RequestOptions} from "@angular/http";
 import {HttpInterceptor} from "./http-interceptor";
 import {LoginComponent} from "../pages/login/login";
 import {UserService} from "../providers/user.service";
-import {BasePageComponent} from "../components/base-page-component/base-page-component";
 import {UserEditComponent} from "../pages/user/user.edit";
 import {UserListComponent} from "../pages/user/user.list";
 import {UserValidator} from "../validators/user.validator";
@@ -52,8 +50,7 @@ import {WelcomeComponent} from "../pages/welcome/welcome";
     PermissionComponent,
     CheckpointListComponent,
     CheckpointEditComponent,
-    HeaderComponent,
-    Autosize
+    HeaderComponent
   ],
   bootstrap: [RootComponent],
   providers: [
