@@ -3,6 +3,7 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {IError} from "../../models/IError";
 import {PermissionService} from "../../providers/permission.service";
 import {Constants} from "../../app/constants";
+import {ViewContainerRef} from "@angular/core";
 
 export class BasePageComponent {
   isLoading: boolean = false;
@@ -10,8 +11,10 @@ export class BasePageComponent {
   constructor(
     private _router: Router,
     private _toastr: ToastsManager,
-    private _permissionService: PermissionService
+    private _permissionService: PermissionService,
+    private _vRef: ViewContainerRef
   ) {
+    this._toastr.setRootViewContainerRef(_vRef);
   }
 
   checkDeletePermission(moduleName: string){

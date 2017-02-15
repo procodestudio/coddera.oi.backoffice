@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule, XHRBackend, Http} from '@angular/http';
 import {routing, RootComponent} from './routes';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {ToastModule, ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {Ng2Webstorage, LocalStorageService} from 'ng2-webstorage';
 
 import {HeaderComponent} from "../components/header/header";
@@ -62,6 +62,7 @@ import {WelcomeComponent} from "../pages/welcome/welcome";
     CheckpointService,
     CheckpointValidator,
     OfferValidator,
+    ToastsManager,
     {
       provide: Http,
       useFactory:

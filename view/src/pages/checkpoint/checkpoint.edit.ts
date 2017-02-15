@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, Validator} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -26,9 +26,10 @@ export class CheckpointEditComponent extends BasePageComponent{
     private userValidator: CheckpointValidator,
     private router: Router,
     private route: ActivatedRoute,
+    private vRef: ViewContainerRef,
     private formBuilder: FormBuilder) {
 
-    super(router, toastr, permissionService);
+    super(router, toastr, permissionService, vRef);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.itemId = params['id'];

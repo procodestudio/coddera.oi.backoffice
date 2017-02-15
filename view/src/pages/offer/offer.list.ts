@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, ViewContainerRef} from '@angular/core';
 import {OfferService} from '../../providers/offer.service';
 import {IOffer} from '../../models/IOffer';
 import { Modal, JSNativeModalModule, providers } from 'angular2-modal/plugins/js-native';
@@ -22,9 +22,10 @@ export class OfferListComponent extends BasePageComponent{
     private toastr: ToastsManager,
     private offerService: OfferService,
     private permissionService: PermissionService,
+    private vRef: ViewContainerRef,
     public modal: Modal) {
 
-    super(router, toastr, permissionService);
+    super(router, toastr, permissionService, vRef);
 
     this.isLoading = true;
     this.offerService.getAll().subscribe(offers => {

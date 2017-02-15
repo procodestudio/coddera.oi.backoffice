@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, ViewContainerRef} from '@angular/core';
 import { Modal, JSNativeModalModule, providers } from 'angular2-modal/plugins/js-native';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -28,9 +28,10 @@ export class PermissionComponent extends BasePageComponent{
     private toastr: ToastsManager,
     private permissionService: PermissionService,
     private userService: UserService,
+    private vRef: ViewContainerRef,
     public modal: Modal) {
 
-    super(router, toastr, permissionService);
+    super(router, toastr, permissionService, vRef);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       var self = this;

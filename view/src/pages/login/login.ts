@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {UserService} from '../../providers/user.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -26,9 +26,12 @@ export class LoginComponent {
     private route: ActivatedRoute,
     private toastr: ToastsManager,
     private userService: UserService,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    private vRef: ViewContainerRef
   ) {
+    this.toastr.setRootViewContainerRef(vRef);
     userService.logout();
+
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.redirectUrl = params['redirectUrl'];

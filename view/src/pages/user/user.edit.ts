@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, Validator} from '@angular/forms';
 import {IUser} from '../../models/IUser';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -27,9 +27,10 @@ export class UserEditComponent extends BasePageComponent{
     private userValidator: UserValidator,
     private router: Router,
     private route: ActivatedRoute,
+    private vRef: ViewContainerRef,
     private formBuilder: FormBuilder) {
 
-    super(router, toastr, permissionService);
+    super(router, toastr, permissionService, vRef);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.itemId = params['id'];

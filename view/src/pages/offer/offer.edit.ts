@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OfferService} from '../../providers/offer.service';
 import {OfferValidator} from '../../validators/offer.validator';
@@ -26,9 +26,10 @@ export class OfferEditComponent extends BasePageComponent{
     private offerValidator: OfferValidator,
     private router: Router,
     private route: ActivatedRoute,
+    private vRef: ViewContainerRef,
     private formBuilder: FormBuilder) {
 
-    super(router, toastr, permissionService);
+    super(router, toastr, permissionService, vRef);
 
     this.paramSubscribe = this.route.params.subscribe(params => {
       this.offerId = params['id'];
