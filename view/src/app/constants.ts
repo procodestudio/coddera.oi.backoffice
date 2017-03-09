@@ -20,5 +20,4 @@ export class Constants {
     'checkpoint': "9cee1d86-e3b6-47be-a652-aea23ee496ae",
     'user': "9884c7b9-b9b6-4746-a02b-a9bd2261b43e"
   };
-
 }

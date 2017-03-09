@@ -3,6 +3,7 @@
 const moment = require('moment');
 const uuidV4 = require('uuid/v4');
 const R = require('ramda');
+const sessionTimeout = 5; // in minutes
 
 let sessions = [];
 
@@ -37,7 +38,7 @@ let authentication = {
 
           sessions.push({
             token: fetchedSession.token,
-            expires: moment().add(60, 'seconds')
+            expires: moment().add(60 * sessionTimeout, 'seconds')
           });
 
           next();
@@ -52,7 +53,7 @@ let authentication = {
   getNewToken: function() {
     let session = {
       token: uuidV4(),
-      expires: moment().add(60, 'seconds')
+      expires: moment().add(60 * sessionTimeout, 'seconds')
     };
 
     sessions.push(session);
