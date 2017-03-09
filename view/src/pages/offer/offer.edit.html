@@ -24,15 +24,15 @@
         <label>Script</label>
       </div>
       <div class="form-input">
-        <input type="text" [(ngModel)]="offer.PRECO" formControlName="PRECO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.PRECO) }">
+        <input type="number" [(ngModel)]="offer.PRECO" step="0.01" formControlName="PRECO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.PRECO) }">
         <label>Preço</label>
       </div>
       <div class="form-input">
-        <input type="text" [(ngModel)]="offer.ID_PROGRAMA" formControlName="ID_PROGRAMA" [ngClass]="{ 'has-value': isNullOrUndefined(offer.ID_PROGRAMA) }">
+        <input type="text" [(ngModel)]="offer.ID_PROGRAMA" maxlength="2" formControlName="ID_PROGRAMA" [ngClass]="{ 'has-value': isNullOrUndefined(offer.ID_PROGRAMA) }">
         <label>Programa</label>
       </div>
       <div class="form-input">
-        <input type="text" [(ngModel)]="offer.ID_BENEFICIO" formControlName="ID_BENEFICIO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.ID_BENEFICIO) }">
+        <input type="text" [(ngModel)]="offer.ID_BENEFICIO" maxlength="2" formControlName="ID_BENEFICIO" [ngClass]="{ 'has-value': isNullOrUndefined(offer.ID_BENEFICIO) }">
         <label>Benefício</label>
       </div>
 

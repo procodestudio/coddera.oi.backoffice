@@ -12,5 +12,4 @@ module.exports = function(app) {
   router.put('/api/offer/:id', offerController.update);
 
   app.use(router);
-
 };

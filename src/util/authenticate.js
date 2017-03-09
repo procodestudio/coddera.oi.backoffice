@@ -8,8 +8,6 @@ const sessionTimeout = 5; // in minutes
 let sessions = [];
 
 let authentication = {
-
-
   checkToken: function(req, res, next) {
     let token = req.headers['x-access-token'] ||  null;
     let requestURL = req.originalUrl;

@@ -42,6 +42,8 @@ const checkpointController = {
 
   save: function(req, res) {
 
+    console.log('SAVING');
+
     let offer = req.body;
 
     checkpointDao.save(offer, function(err, result) {

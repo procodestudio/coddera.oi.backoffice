@@ -38,7 +38,7 @@ export class CheckpointListComponent extends BasePageComponent{
 
   deleteItem(item: ICheckpoint, index: number) {
     const dialog = this.modal.confirm()
-      .message('Deseja realmente excluir esta oferta?')
+      .message('Deseja realmente excluir este checkpoint?')
       .open();
 
     dialog.then((resultPromise) => {
