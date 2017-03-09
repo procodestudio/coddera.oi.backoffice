@@ -57,3 +57,4 @@ jspm_packages
 *.gypi
 
 .DS_Store
+public

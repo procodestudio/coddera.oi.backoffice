@@ -30,11 +30,11 @@ import {WelcomeComponent} from "../pages/welcome/welcome";
 
 @NgModule({
   imports: [
-    ToastModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,
     ModalModule.forRoot(),
+    ToastModule.forRoot(),
     HttpModule,
     Ng2Webstorage,
     routing
